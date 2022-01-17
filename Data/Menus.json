@@ -1,0 +1,109 @@
+{
+	"title": "Main Menu",
+	"controllerName": "DefaultController",
+	"children": [
+		{
+			"name": "Contacts",
+			"controllerName": "ContactsController",
+			"children": [
+				{
+					"name": "Show Contact",
+					"controllerMode": 0
+				},
+				{
+					"name": "Call Contact",
+					"controllerMode": 1
+				},
+				{
+					"name": "Add Contact",
+					"controllerMode": 2
+				},
+				{
+					"name": "Edit Contact",
+					"controllerMode": 3
+				},
+				{
+					"name": "Delete Contact",
+					"controllerMode": 4
+				}
+			]
+		},
+		{
+			"name": "Empty",
+			"children": [
+				{
+					"name": "Empty",
+					"children": [
+						{
+							"name": "Empty",
+							"children": [
+								{
+									"name": "Empty",
+									"children": [
+										{
+											"name": "Empty"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Empty"
+				},
+				{
+					"name": "Empty"
+				},
+				{
+					"name": "Empty"
+				},
+				{
+					"name": "Empty"
+				},
+				{
+					"name": "Empty"
+				},
+				{
+					"name": "Empty"
+				},
+				{
+					"name": "Empty"
+				},
+				{
+					"name": "Empty"
+				},
+				{
+					"name": "Empty"
+				}
+			]
+		},
+		{
+			"name": "Empty"
+		},
+		{
+			"name": "Empty"
+		},
+		{
+			"name": "Empty"
+		},
+		{
+			"name": "Empty"
+		},
+		{
+			"name": "Empty"
+		},
+		{
+			"name": "Empty"
+		},
+		{
+			"name": "Empty"
+		},
+		{
+			"name": "Empty"
+		},
+		{
+			"name": "Empty"
+		}
+	]
+}
