@@ -2,6 +2,7 @@
 #define MAINDISPLAYCONTROLLER_H
 
 #include "Controller.h"
+#include "Display.h"
 
 class MainDisplayController : public Controller
 {
@@ -9,10 +10,12 @@ class MainDisplayController : public Controller
 public:
     explicit MainDisplayController(QObject *parent = nullptr);
 
-    // Controller interface
 public:
     virtual void init() override;
     virtual void onAction(Action *action) override;
+
+private:
+    Display mDisplay;
 };
 
 #endif // MAINDISPLAYCONTROLLER_H

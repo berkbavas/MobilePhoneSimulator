@@ -1,10 +1,10 @@
 {
 	"title": "Main Menu",
-	"controllerName": "DefaultController",
+	"controllerName": "DefaultDisplayController",
 	"children": [
 		{
 			"name": "Contacts",
-			"controllerName": "ContactsController",
+			"controllerName": "ContactsDisplayController",
 			"children": [
 				{
 					"name": "Show Contact",

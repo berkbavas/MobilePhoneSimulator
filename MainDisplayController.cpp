@@ -1,11 +1,26 @@
 #include "MainDisplayController.h"
 #include "Enums.h"
 
+#include <QDebug>
+
 MainDisplayController::MainDisplayController(QObject *parent)
     : Controller{parent}
 {}
 
-void MainDisplayController::init() {}
+void MainDisplayController::init()
+{
+    mDisplay.setRow0(" ");
+    mDisplay.setRow1(" ");
+    mDisplay.setRow2("     Main Display   ");
+    mDisplay.setRow3(" ");
+    mDisplay.setRow4(" ");
+
+    connect(this, &Controller::activeChanged, this, [=]() {
+        if (mActive) {
+            emit activeItemChanged(&mDisplay);
+        }
+    });
+}
 
 void MainDisplayController::onAction(Action *action)
 {

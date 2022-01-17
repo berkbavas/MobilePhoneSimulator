@@ -6,20 +6,20 @@
 class Action
 {
 public:
-    Action(int button, int actionType);
+    Action(int button, int action);
 
     Enums::Button button() const;
     void setButton(Enums::Button newButton);
 
-    Enums::ActionType actionType() const;
-    void setActionType(Enums::ActionType newActionType);
+    Enums::Action action() const;
+    void setAction(Enums::Action newAction);
 
     bool consumed() const;
     void setConsumed(bool newConsumed);
 
 private:
     Enums::Button mButton;
-    Enums::ActionType mActionType;
+    Enums::Action mAction;
     bool mConsumed;
 };
 

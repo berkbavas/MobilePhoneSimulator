@@ -1,27 +1,29 @@
-#include "MenuController.h"
+#include "MainMenuController.h"
 #include "Helper.h"
 
-MenuController::MenuController(QObject *parent)
+MainMenuController::MainMenuController(QObject *parent)
     : Controller{parent}
     , mActiveMenu(nullptr)
     , mMainMenu(nullptr)
+{}
+
+void MainMenuController::init()
 {
+    mMainMenu = Helper::parseMenus(":/Data/Menus.json");
+
     connect(this, &Controller::activeChanged, this, [=]() {
         if (mActive) {
             if (mVisitedMenus.isEmpty())
-                setActiveMenu(mMainMenu);
+                mActiveMenu = mMainMenu;
             else
-                setActiveMenu(mVisitedMenus.pop());
+                mActiveMenu = mVisitedMenus.pop();
+
+            emit activeItemChanged(mActiveMenu);
         }
     });
 }
 
-void MenuController::init()
-{
-    mMainMenu = Helper::parseMenus(":/Data/Menus.json");
-}
-
-void MenuController::onAction(Action *action)
+void MainMenuController::onAction(Action *action)
 {
     switch (action->button()) {
     case Enums::Button::Zero:
@@ -50,11 +52,11 @@ void MenuController::onAction(Action *action)
         break;
     case Enums::Button::Clear:
         if (mActiveMenu == mMainMenu) {
-            setActiveMenu(nullptr);
-            mMainMenu->scrollHandler()->reset();
+            mMainMenu->reset();
             emit controllerChanged("MainDisplayController", -1);
         } else {
-            setActiveMenu(mVisitedMenus.pop());
+            mActiveMenu = mVisitedMenus.pop();
+            emit activeItemChanged(mActiveMenu);
         }
         break;
     case Enums::Button::Space:
@@ -63,7 +65,8 @@ void MenuController::onAction(Action *action)
             Menu *selected = mActiveMenu->selected();
 
             if (selected->children().size() != 0) {
-                setActiveMenu(selected);
+                mActiveMenu = selected;
+                emit activeItemChanged(selected);
             } else {
                 emit controllerChanged(selected->controllerName(), selected->controllerMode());
             }
@@ -80,17 +83,4 @@ void MenuController::onAction(Action *action)
     }
 
     action->setConsumed(true);
-}
-
-Menu *MenuController::activeMenu() const
-{
-    return mActiveMenu;
-}
-
-void MenuController::setActiveMenu(Menu *newActiveMenu)
-{
-    if (mActiveMenu == newActiveMenu)
-        return;
-    mActiveMenu = newActiveMenu;
-    emit activeMenuChanged();
 }

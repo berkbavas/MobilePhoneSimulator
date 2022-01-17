@@ -1,8 +1,8 @@
 #include "Action.h"
 
-Action::Action(int button, int actionType)
+Action::Action(int button, int action)
     : mButton((Enums::Button) button)
-    , mActionType((Enums::ActionType) actionType)
+    , mAction((Enums::Action) action)
     , mConsumed(false)
 {}
 
@@ -16,14 +16,14 @@ void Action::setButton(Enums::Button newButton)
     mButton = newButton;
 }
 
-Enums::ActionType Action::actionType() const
+Enums::Action Action::action() const
 {
-    return mActionType;
+    return mAction;
 }
 
-void Action::setActionType(Enums::ActionType newActionType)
+void Action::setAction(Enums::Action newAction)
 {
-    mActionType = newActionType;
+    mAction = newAction;
 }
 
 bool Action::consumed() const

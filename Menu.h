@@ -1,12 +1,11 @@
 #ifndef MENU_H
 #define MENU_H
-#include "ScrollHandler.h"
+#include "Item.h"
 #include <QObject>
 
-class Menu : public QObject
+class Menu : public Item
 {
     Q_OBJECT
-    Q_PROPERTY(ScrollHandler *scrollHandler READ scrollHandler WRITE setScrollHandler NOTIFY scrollHandlerChanged)
     Q_PROPERTY(QList<Menu *> children READ children WRITE setChildren NOTIFY childrenChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QString namePrefix READ namePrefix WRITE setNamePrefix NOTIFY namePrefixChanged)
@@ -14,12 +13,12 @@ class Menu : public QObject
     Q_PROPERTY(QString id READ id WRITE setId NOTIFY idChanged)
     Q_PROPERTY(QString controllerName READ controllerName WRITE setControllerName NOTIFY controllerNameChanged)
     Q_PROPERTY(int controllerMode READ controllerMode WRITE setControllerMode NOTIFY controllerModeChanged)
+    Q_PROPERTY(int currentIndex READ currentIndex WRITE setCurrentIndex NOTIFY currentIndexChanged)
+    Q_PROPERTY(int firstVisibleIndex READ firstVisibleIndex WRITE setFirstVisibleIndex NOTIFY firstVisibleIndexChanged)
+    Q_PROPERTY(int lastVisibleIndex READ lastVisibleIndex WRITE setLastVisibleIndex NOTIFY lastVisibleIndexChanged)
 
 public:
     explicit Menu(QObject *parent = nullptr);
-
-    ScrollHandler *scrollHandler() const;
-    void setScrollHandler(ScrollHandler *newScrollHandler);
 
     const QList<Menu *> &children() const;
     void setChildren(const QList<Menu *> &newChildren);
@@ -42,27 +41,36 @@ public:
     int controllerMode() const;
     void setControllerMode(int newControllerMode);
 
+    int currentIndex() const;
+    void setCurrentIndex(int newCurrentIndex);
+
+    int firstVisibleIndex() const;
+    void setFirstVisibleIndex(int newFirstVisibleIndex);
+
+    int lastVisibleIndex() const;
+    void setLastVisibleIndex(int newLastVisibleIndex);
+
 public slots:
     void addChild(Menu *child);
     bool increment();
     bool decrement();
     void reset();
+    void update();
     Menu *selected();
 
 signals:
-    void scrollHandlerChanged();
     void childrenChanged();
     void nameChanged();
     void namePrefixChanged();
     void titleChanged();
     void idChanged();
-
     void controllerNameChanged();
-
     void controllerModeChanged();
+    void currentIndexChanged();
+    void firstVisibleIndexChanged();
+    void lastVisibleIndexChanged();
 
 private:
-    ScrollHandler *mScrollHandler;
     QList<Menu *> mChildren;
     QString mName;
     QString mNamePrefix;
@@ -70,6 +78,11 @@ private:
     QString mId;
     QString mControllerName;
     int mControllerMode;
+
+    // Scroll
+    int mCurrentIndex;
+    int mFirstVisibleIndex;
+    int mLastVisibleIndex;
 };
 
 #endif // MENU_H

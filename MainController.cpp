@@ -1,7 +1,7 @@
 #include "MainController.h"
 #include "Action.h"
-#include "ContactsController.h"
-#include "DefaultController.h"
+#include "ContactsDisplayController.h"
+#include "DefaultDisplayController.h"
 #include "Enums.h"
 #include "Helper.h"
 #include "MainDisplayController.h"
@@ -11,7 +11,7 @@
 MainController::MainController(QObject *parent)
     : QObject{parent}
     , mActiveController(nullptr)
-    , mDefaultController(nullptr)
+    , mActiveItem(nullptr)
     , mEngine(nullptr)
 {}
 
@@ -20,38 +20,39 @@ void MainController::init(QQmlApplicationEngine *engine)
     mEngine = engine;
     mEngine->rootContext()->setContextProperty("controller", this);
 
-    mMenuController = new MenuController;
-    mMenuController->init();
-    mControllers.insert("MenuController", mMenuController);
-    mEngine->rootContext()->setContextProperty("menuController", mMenuController);
+    mMainMenuController = new MainMenuController;
+    mControllers.insert("MainMenuController", mMainMenuController);
 
-    mDefaultController = new DefaultController;
-    mDefaultController->init();
-    mControllers.insert("DefaultController", mDefaultController);
-    mEngine->rootContext()->setContextProperty("defaultDisplayController", mDefaultController);
+    mDefaultDisplayController = new DefaultDisplayController;
+    mControllers.insert("DefaultDisplayController", mDefaultDisplayController);
 
     mMainDisplayController = new MainDisplayController;
-    mMainDisplayController->init();
     mControllers.insert("MainDisplayController", mMainDisplayController);
-    mEngine->rootContext()->setContextProperty("mainDisplayController", mMainDisplayController);
 
-    mContactsController = new ContactsController;
-    mContactsController->init();
-    mControllers.insert("ContactsController", mContactsController);
-    mEngine->rootContext()->setContextProperty("contactsController", mContactsController);
+    mContactsDisplayController = new ContactsDisplayController;
+    mControllers.insert("ContactsDisplayController", mContactsDisplayController);
 
-    setActiveController(mMainDisplayController);
+    QMap<QString, Controller *>::iterator it;
+
+    for (it = mControllers.begin(); it != mControllers.end(); it++) {
+        connect(it.value(), &Controller::activeItemChanged, this, &MainController::onActiveItemChanged);
+        it.value()->init();
+    }
 
     // Connections
-    connect(mMenuController, &MenuController::controllerChanged, this, [=](QString controllerName, int controllerMode) {
-        Controller *controller = mControllers.value(controllerName, mDefaultController);
+    connect(mMainMenuController, &MainMenuController::controllerChanged, this, [=](QString controllerName, int controllerMode) {
+        Controller *controller = mControllers.value(controllerName, mDefaultDisplayController);
         controller->setMode(controllerMode);
         setActiveController(controller);
     });
+
+    setActiveController(mMainDisplayController);
 }
 
 void MainController::onAction(int button, int actionType)
 {
+    qDebug() << "MainController::onAction" << button << actionType;
+
     Action action(button, actionType);
 
     if (mActiveController)
@@ -87,16 +88,83 @@ void MainController::onAction(int button, int actionType)
         break;
     case Enums::Button::Clear:
         if (mActiveController != mMainDisplayController)
-            setActiveController(mMenuController);
+            setActiveController(mMainMenuController);
         break;
     case Enums::Button::Space:
-        setActiveController(mMenuController);
+        setActiveController(mMainMenuController);
         break;
     case Enums::Button::Up:
         break;
     case Enums::Button::Down:
         break;
     }
+}
+
+void MainController::onActiveItemChanged(Item *activeItem)
+{
+    qDebug() << "MainController::onActiveItemChanged" << activeItem;
+
+    setActiveItem(activeItem);
+
+    if (activeItem->type() == 0)
+        setMainMenu(dynamic_cast<Menu *>(activeItem));
+    else if (activeItem->type() == 1)
+        setSimpleMenu(dynamic_cast<SimpleMenu *>(activeItem));
+    else if (activeItem->type() == 2)
+        setDisplay(dynamic_cast<Display *>(activeItem));
+}
+
+Item *MainController::activeItem() const
+{
+    return mActiveItem;
+}
+
+void MainController::setActiveItem(Item *newActiveItem)
+{
+    if (mActiveItem == newActiveItem)
+        return;
+
+    mActiveItem = newActiveItem;
+    emit activeItemChanged();
+}
+
+Display *MainController::display() const
+{
+    return mDisplay;
+}
+
+void MainController::setDisplay(Display *newDisplay)
+{
+    if (mDisplay == newDisplay)
+        return;
+    mDisplay = newDisplay;
+    emit displayChanged();
+}
+
+Menu *MainController::mainMenu() const
+{
+    return mMainMenu;
+}
+
+void MainController::setMainMenu(Menu *newMainMenu)
+{
+    if (mMainMenu == newMainMenu)
+        return;
+    mMainMenu = newMainMenu;
+    emit mainMenuChanged();
+}
+
+SimpleMenu *MainController::simpleMenu() const
+{
+    return mSimpleMenu;
+}
+
+void MainController::setSimpleMenu(SimpleMenu *newSimpleMenu)
+{
+    if (mSimpleMenu == newSimpleMenu)
+        return;
+    mSimpleMenu = newSimpleMenu;
+    emit simpleMenuChanged();
 }
 
 Controller *MainController::activeController() const

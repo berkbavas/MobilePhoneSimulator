@@ -3,19 +3,13 @@
         <file>Data/Contacts.json</file>
         <file>Data/Menus.json</file>
         <file>Qml/AnimatedButton.qml</file>
-        <file>Qml/ContactsDisplay.qml</file>
-        <file>Qml/ContactsList.qml</file>
-        <file>Qml/ContactsListItem.qml</file>
+        <file>Qml/SimpleMenu.qml</file>
         <file>Qml/Container.qml</file>
         <file>Qml/CustomText.qml</file>
-        <file>Qml/DefaultDisplay.qml</file>
         <file>Qml/DisplayContainer.qml</file>
-        <file>Qml/GenericMenu.qml</file>
-        <file>Qml/GenericMenuItem.qml</file>
+        <file>Qml/MainMenu.qml</file>
         <file>Qml/Main.qml</file>
-        <file>Qml/MainDisplay.qml</file>
         <file>Qml/Screen.qml</file>
-        <file>Qml/TitledDisplayContainer.qml</file>
         <file>Resources/Fonts/JetBrainsMono-Regular.ttf</file>
         <file>Resources/Images/0.png</file>
         <file>Resources/Images/1.png</file>
@@ -36,5 +30,6 @@
         <file>Resources/Images/Space.png</file>
         <file>Resources/Images/Square.png</file>
         <file>Resources/Images/Star.png</file>
+        <file>Qml/Display.qml</file>
     </qresource>
 </RCC>

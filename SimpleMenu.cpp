@@ -1,16 +1,14 @@
-#include "ScrollHandler.h"
+#include "SimpleMenu.h"
 
-ScrollHandler::ScrollHandler(QObject *parent)
-    : QObject{parent}
-    , mMenuSize(0)
-    , mCurrentIndex(0)
-    , mFirstVisibleIndex(0)
-    , mLastVisibleIndex(5)
-{}
-
-bool ScrollHandler::increment()
+SimpleMenu::SimpleMenu(QObject *parent)
+    : Item{parent}
 {
-    if (mCurrentIndex < mMenuSize - 1) {
+    setType((int) Item::Type::SimpleMenu);
+}
+
+bool SimpleMenu::increment()
+{
+    if (mCurrentIndex < mRows.size() - 1) {
         setCurrentIndex(mCurrentIndex + 1);
         update();
         return true;
@@ -19,7 +17,7 @@ bool ScrollHandler::increment()
     return false;
 }
 
-bool ScrollHandler::decrement()
+bool SimpleMenu::decrement()
 {
     if (0 < mCurrentIndex) {
         setCurrentIndex(mCurrentIndex - 1);
@@ -30,14 +28,14 @@ bool ScrollHandler::decrement()
     return false;
 }
 
-void ScrollHandler::reset()
+void SimpleMenu::reset()
 {
     setCurrentIndex(0);
     setFirstVisibleIndex(0);
     setLastVisibleIndex(5);
 }
 
-void ScrollHandler::update()
+void SimpleMenu::update()
 {
     while (mLastVisibleIndex < mCurrentIndex) {
         setFirstVisibleIndex(mFirstVisibleIndex + 1);
@@ -50,25 +48,38 @@ void ScrollHandler::update()
     }
 }
 
-int ScrollHandler::menuSize() const
+const QString &SimpleMenu::title() const
 {
-    return mMenuSize;
+    return mTitle;
 }
 
-void ScrollHandler::setMenuSize(int newMenuSize)
+void SimpleMenu::setTitle(const QString &newTitle)
 {
-    if (mMenuSize == newMenuSize)
+    if (mTitle == newTitle)
         return;
-    mMenuSize = newMenuSize;
-    emit menuSizeChanged();
+    mTitle = newTitle;
+    emit titleChanged();
 }
 
-int ScrollHandler::currentIndex() const
+const QStringList &SimpleMenu::rows() const
+{
+    return mRows;
+}
+
+void SimpleMenu::setRows(const QStringList &newRows)
+{
+    if (mRows == newRows)
+        return;
+    mRows = newRows;
+    emit rowsChanged();
+}
+
+int SimpleMenu::currentIndex() const
 {
     return mCurrentIndex;
 }
 
-void ScrollHandler::setCurrentIndex(int newCurrentIndex)
+void SimpleMenu::setCurrentIndex(int newCurrentIndex)
 {
     if (mCurrentIndex == newCurrentIndex)
         return;
@@ -76,12 +87,12 @@ void ScrollHandler::setCurrentIndex(int newCurrentIndex)
     emit currentIndexChanged();
 }
 
-int ScrollHandler::firstVisibleIndex() const
+int SimpleMenu::firstVisibleIndex() const
 {
     return mFirstVisibleIndex;
 }
 
-void ScrollHandler::setFirstVisibleIndex(int newFirstVisibleIndex)
+void SimpleMenu::setFirstVisibleIndex(int newFirstVisibleIndex)
 {
     if (mFirstVisibleIndex == newFirstVisibleIndex)
         return;
@@ -89,15 +100,27 @@ void ScrollHandler::setFirstVisibleIndex(int newFirstVisibleIndex)
     emit firstVisibleIndexChanged();
 }
 
-int ScrollHandler::lastVisibleIndex() const
+int SimpleMenu::lastVisibleIndex() const
 {
     return mLastVisibleIndex;
 }
 
-void ScrollHandler::setLastVisibleIndex(int newLastVisibleIndex)
+void SimpleMenu::setLastVisibleIndex(int newLastVisibleIndex)
 {
     if (mLastVisibleIndex == newLastVisibleIndex)
         return;
     mLastVisibleIndex = newLastVisibleIndex;
     emit lastVisibleIndexChanged();
+}
+
+void SimpleMenu::addRow(QString row)
+{
+    mRows << row;
+    emit rowsChanged();
+}
+
+void SimpleMenu::clearRows()
+{
+    mRows.clear();
+    emit rowsChanged();
 }

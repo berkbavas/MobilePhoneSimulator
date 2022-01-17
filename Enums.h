@@ -22,7 +22,7 @@ enum class Button : int { //
     Down
 };
 
-enum class ActionType { //
+enum class Action { //
     Pressed,
     Released,
     Clicked

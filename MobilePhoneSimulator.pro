@@ -7,16 +7,18 @@ QT += quick
 SOURCES += \
         Action.cpp \
         Contact.cpp \
-        ContactsController.cpp \
+        ContactsDisplayController.cpp \
         Controller.cpp \
-        DefaultController.cpp \
+        DefaultDisplayController.cpp \
+        Display.cpp \
         Helper.cpp \
+        Item.cpp \
         MainController.cpp \
         MainDisplayController.cpp \
+        MainMenuController.cpp \
         Menu.cpp \
-        MenuController.cpp \
-        ScrollHandler.cpp \
-        Main.cpp
+        Main.cpp \
+        SimpleMenu.cpp
 
 RESOURCES += qml.qrc
 
@@ -34,13 +36,15 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Action.h \
     Contact.h \
-    ContactsController.h \
+    ContactsDisplayController.h \
     Controller.h \
-    DefaultController.h \
+    DefaultDisplayController.h \
+    Display.h \
     Enums.h \
     Helper.h \
+    Item.h \
     MainController.h \
     MainDisplayController.h \
+    MainMenuController.h \
     Menu.h \
-    MenuController.h \
-    ScrollHandler.h
+    SimpleMenu.h

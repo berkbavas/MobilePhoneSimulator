@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 
 #include "Action.h"
+#include "Item.h"
 
 #include <QObject>
 
@@ -25,6 +26,7 @@ public:
 signals:
     void modeChanged();
     void activeChanged();
+    void activeItemChanged(Item *activeItem);
 
 protected:
     int mMode;

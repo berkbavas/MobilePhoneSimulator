@@ -1,34 +1,102 @@
 #include "Menu.h"
 
 Menu::Menu(QObject *parent)
-    : QObject{parent}
-    , mScrollHandler(nullptr)
+    : Item{parent}
     , mName()
     , mNamePrefix()
     , mTitle()
     , mId()
+    , mCurrentIndex(0)
+    , mFirstVisibleIndex(0)
+    , mLastVisibleIndex(5)
 {
-    mScrollHandler = new ScrollHandler;
+    setType((int) Item::Type::MainMenu);
 }
 
 bool Menu::increment()
 {
-    return mScrollHandler->increment();
+    if (mCurrentIndex < mChildren.size() - 1) {
+        setCurrentIndex(mCurrentIndex + 1);
+        update();
+        return true;
+    }
+
+    return false;
 }
 
 bool Menu::decrement()
 {
-    return mScrollHandler->decrement();
+    if (0 < mCurrentIndex) {
+        setCurrentIndex(mCurrentIndex - 1);
+        update();
+        return true;
+    }
+
+    return false;
 }
 
 void Menu::reset()
 {
-    mScrollHandler->reset();
+    setCurrentIndex(0);
+    setFirstVisibleIndex(0);
+    setLastVisibleIndex(5);
+}
+
+void Menu::update()
+{
+    while (mLastVisibleIndex < mCurrentIndex) {
+        setFirstVisibleIndex(mFirstVisibleIndex + 1);
+        setLastVisibleIndex(mLastVisibleIndex + 1);
+    }
+
+    while (mCurrentIndex < mFirstVisibleIndex) {
+        setFirstVisibleIndex(mFirstVisibleIndex - 1);
+        setLastVisibleIndex(mLastVisibleIndex - 1);
+    }
 }
 
 Menu *Menu::selected()
 {
-    return mChildren.at(mScrollHandler->currentIndex());
+    return mChildren.at(mCurrentIndex);
+}
+
+int Menu::lastVisibleIndex() const
+{
+    return mLastVisibleIndex;
+}
+
+void Menu::setLastVisibleIndex(int newLastVisibleIndex)
+{
+    if (mLastVisibleIndex == newLastVisibleIndex)
+        return;
+    mLastVisibleIndex = newLastVisibleIndex;
+    emit lastVisibleIndexChanged();
+}
+
+int Menu::firstVisibleIndex() const
+{
+    return mFirstVisibleIndex;
+}
+
+void Menu::setFirstVisibleIndex(int newFirstVisibleIndex)
+{
+    if (mFirstVisibleIndex == newFirstVisibleIndex)
+        return;
+    mFirstVisibleIndex = newFirstVisibleIndex;
+    emit firstVisibleIndexChanged();
+}
+
+int Menu::currentIndex() const
+{
+    return mCurrentIndex;
+}
+
+void Menu::setCurrentIndex(int newCurrentIndex)
+{
+    if (mCurrentIndex == newCurrentIndex)
+        return;
+    mCurrentIndex = newCurrentIndex;
+    emit currentIndexChanged();
 }
 
 int Menu::controllerMode() const
@@ -61,21 +129,7 @@ void Menu::addChild(Menu *child)
 {
     if (child) {
         mChildren << child;
-        mScrollHandler->setMenuSize(mScrollHandler->menuSize() + 1);
     }
-}
-
-ScrollHandler *Menu::scrollHandler() const
-{
-    return mScrollHandler;
-}
-
-void Menu::setScrollHandler(ScrollHandler *newScrollHandler)
-{
-    if (mScrollHandler == newScrollHandler)
-        return;
-    mScrollHandler = newScrollHandler;
-    emit scrollHandlerChanged();
 }
 
 const QList<Menu *> &Menu::children() const
