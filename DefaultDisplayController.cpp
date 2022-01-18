@@ -2,16 +2,15 @@
 
 DefaultDisplayController::DefaultDisplayController(QObject *parent)
     : Controller{parent}
-{}
-
-void DefaultDisplayController::init()
 {
     mDisplay.setTitle("");
-    mDisplay.setRow0("This display is");
-    mDisplay.setRow1("not implemented yet.");
-    mDisplay.setRow2("Press 'c' in order");
-    mDisplay.setRow3("to return.");
-    mDisplay.setRow4(" ");
+    mDisplay.setRow0("This display is not");
+    mDisplay.setRow1("implemented yet.");
+    mDisplay.setRow2(" ");
+    mDisplay.setRow3("Press 'c' in order");
+    mDisplay.setRow4("to return.");
+    mDisplay.setRow5(" ");
+    mDisplay.setRow6(" ");
 
     connect(this, &Controller::activeChanged, this, [=]() {
         if (mActive) {
@@ -19,5 +18,3 @@ void DefaultDisplayController::init()
         }
     });
 }
-
-void DefaultDisplayController::onAction(Action *action) {}

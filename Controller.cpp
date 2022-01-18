@@ -5,6 +5,12 @@ Controller::Controller(QObject *parent)
     , mActive(false)
 {}
 
+void Controller::init() {}
+
+void Controller::onAction(Action *action) {}
+
+void Controller::update(quint64 milisecondsElapsed) {}
+
 int Controller::mode() const
 {
     return mMode;

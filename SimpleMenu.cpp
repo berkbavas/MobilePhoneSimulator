@@ -4,6 +4,7 @@ SimpleMenu::SimpleMenu(QObject *parent)
     : Item{parent}
 {
     setType((int) Item::Type::SimpleMenu);
+    reset();
 }
 
 bool SimpleMenu::increment()
@@ -32,7 +33,7 @@ void SimpleMenu::reset()
 {
     setCurrentIndex(0);
     setFirstVisibleIndex(0);
-    setLastVisibleIndex(5);
+    setLastVisibleIndex(6);
 }
 
 void SimpleMenu::update()
@@ -113,10 +114,22 @@ void SimpleMenu::setLastVisibleIndex(int newLastVisibleIndex)
     emit lastVisibleIndexChanged();
 }
 
-void SimpleMenu::addRow(QString row)
+void SimpleMenu::addRow(const QString &row)
 {
     mRows << row;
     emit rowsChanged();
+}
+
+void SimpleMenu::setRow(int index, const QString &row)
+{
+    mRows.removeAt(index);
+    mRows.insert(index, row);
+}
+
+void SimpleMenu::clearAll()
+{
+    setTitle(" ");
+    clearRows();
 }
 
 void SimpleMenu::clearRows()

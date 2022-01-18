@@ -14,8 +14,9 @@ class Controller : public QObject
 
 public:
     explicit Controller(QObject *parent = nullptr);
-    virtual void init() = 0;
-    virtual void onAction(Action *action) = 0;
+    virtual void init();
+    virtual void onAction(Action *action);
+    virtual void update(quint64 milisecondsElapsed);
 
     int mode() const;
     void setMode(int newMode);

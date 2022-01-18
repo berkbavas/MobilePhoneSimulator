@@ -9,25 +9,15 @@
 #include <QMap>
 #include <QObject>
 #include <QQmlApplicationEngine>
+#include <QTimer>
 
 class MainController : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(SimpleMenu *simpleMenu READ simpleMenu WRITE setSimpleMenu NOTIFY simpleMenuChanged)
-    Q_PROPERTY(Menu *mainMenu READ mainMenu WRITE setMainMenu NOTIFY mainMenuChanged)
-    Q_PROPERTY(Display *display READ display WRITE setDisplay NOTIFY displayChanged)
+    Q_PROPERTY(Item *activeItem READ activeItem WRITE setActiveItem NOTIFY activeItemChanged)
 
 public:
     explicit MainController(QObject *parent = nullptr);
-
-    SimpleMenu *simpleMenu() const;
-    void setSimpleMenu(SimpleMenu *newSimpleMenu);
-
-    Menu *mainMenu() const;
-    void setMainMenu(Menu *newMainMenu);
-
-    Display *display() const;
-    void setDisplay(Display *newDisplay);
 
     Controller *activeController() const;
     void setActiveController(Controller *newActiveController);
@@ -38,13 +28,9 @@ public:
 public slots:
     void init(QQmlApplicationEngine *engine);
     void onAction(int button, int actionType = -1);
-    void onActiveItemChanged(Item *activeItem);
+    void update();
 
 signals:
-    void simpleMenuChanged();
-    void mainMenuChanged();
-    void displayChanged();
-
     void activeItemChanged();
 
 private:
@@ -54,15 +40,15 @@ private:
     Controller *mContactsDisplayController;
     MainMenuController *mMainMenuController;
 
-    // Items
-    SimpleMenu *mSimpleMenu; // C++ -> QML
-    Menu *mMainMenu;         // C++ -> QML
-    Display *mDisplay;       // C+ -> QML
-    Item *mActiveItem;
+    Item *mActiveItem; // C++ -> QML
 
     QQmlApplicationEngine *mEngine;
     QMap<QString, Controller *> mControllers;
-    Q_PROPERTY(Item *activeItem READ activeItem WRITE setActiveItem NOTIFY activeItemChanged)
+
+    QTimer mTimer;
+    quint64 mCurrentTime;
+    quint64 mPreviousTime;
+    quint64 mSimulationTime;
 };
 
 #endif // MAINCONTROLLER_H

@@ -32,7 +32,9 @@ public:
     void setLastVisibleIndex(int newLastVisibleIndex);
 
 public slots:
-    void addRow(QString row);
+    void addRow(const QString &row);
+    void setRow(int index, const QString &row);
+    void clearAll();
     void clearRows();
     bool increment();
     bool decrement();

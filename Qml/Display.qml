@@ -8,6 +8,8 @@ DisplayContainer {
     property string row2: " "
     property string row3: " "
     property string row4: " "
+    property string row5: " "
+    property string row6: " "
 
     CustomText {
         text: title
@@ -16,7 +18,7 @@ DisplayContainer {
     CustomText {
         x: 0
         y: 10
-        text: title.length === 0 ? "" : "▬".repeat(20)
+        text: title.length === 0 ? "" : "▬".repeat(25)
     }
 
     Column {
@@ -42,5 +44,14 @@ DisplayContainer {
         CustomText {
             text: row4
         }
+
+        CustomText {
+            text: row5
+        }
+
+        CustomText {
+            text: row6
+        }
+
     }
 }

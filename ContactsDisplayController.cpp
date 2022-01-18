@@ -4,6 +4,12 @@
 ContactsDisplayController::ContactsDisplayController(QObject *parent)
     : Controller{parent}
 {
+    mContacts = Helper::parseContacts(":/Data/Contacts.json");
+
+    for (int i = 0; i < mContacts.size(); i++) {
+        mContactsList.addRow(mContacts.at(i)->name());
+    }
+
     connect(this, &Controller::activeChanged, this, [=]() {
         if (mActive) {
             mContactsList.reset();
@@ -13,15 +19,6 @@ ContactsDisplayController::ContactsDisplayController(QObject *parent)
             emit activeItemChanged(&mContactsList);
         }
     });
-}
-
-void ContactsDisplayController::init()
-{
-    mContacts = Helper::parseContacts(":/Data/Contacts.json");
-
-    for (int i = 0; i < mContacts.size(); i++) {
-        mContactsList.addRow(mContacts.at(i)->name());
-    }
 }
 
 void ContactsDisplayController::onAction(Action *action)
@@ -41,8 +38,8 @@ void ContactsDisplayController::onAction(Action *action)
             mCurrentDisplay = DisplayType::Details;
             mContactDetails.setRow0("Name: ");
             mContactDetails.setRow1(mContacts.at(mContactsList.currentIndex())->name());
-            mContactDetails.setRow2("Phone Number:");
-            mContactDetails.setRow3(mContacts.at(mContactsList.currentIndex())->phoneNumber());
+            mContactDetails.setRow3("Phone Number:");
+            mContactDetails.setRow4(mContacts.at(mContactsList.currentIndex())->phoneNumber());
             emit activeItemChanged(&mContactDetails);
 
             action->setConsumed(true);

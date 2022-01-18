@@ -8,7 +8,7 @@ Item {
         if(controller.activeItem  === null)
             return -1
         else
-            return controller.activeItem !== null && controller.activeItem.type
+            return controller.activeItem.type
     }
 
     MainMenu {
@@ -20,7 +20,6 @@ Item {
         lastVisibleIndex: getItemType() === 0 ?  controller.activeItem.lastVisibleIndex : 0
         visible: getItemType() === 0
     }
-
 
     SimpleMenu {
         title:  getItemType() === 1 ?  controller.activeItem.title : ""
@@ -38,10 +37,8 @@ Item {
         row2: getItemType() === 2 ?  controller.activeItem.row2 : " "
         row3: getItemType() === 2 ?  controller.activeItem.row3 : " "
         row4: getItemType() === 2 ?  controller.activeItem.row4 : " "
+        row5: getItemType() === 2 ?  controller.activeItem.row5 : " "
+        row6: getItemType() === 2 ?  controller.activeItem.row6 : " "
         visible: getItemType() === 2
     }
-
-
-
-
 }

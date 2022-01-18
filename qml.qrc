@@ -31,5 +31,6 @@
         <file>Resources/Images/Square.png</file>
         <file>Resources/Images/Star.png</file>
         <file>Qml/Display.qml</file>
+        <file>Resources/Fonts/nokiafc22.ttf</file>
     </qresource>
 </RCC>

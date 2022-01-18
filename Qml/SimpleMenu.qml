@@ -15,7 +15,7 @@ DisplayContainer {
     CustomText {
         x: 0
         y: 10
-        text: "▬".repeat(20)
+        text: "▬".repeat(24)
     }
 
     Column {
@@ -33,7 +33,7 @@ DisplayContainer {
                     id: background
                     x: 0
                     y: 0
-                    text: index === currentIndex ? "█".repeat(20) : " "
+                    text: index === currentIndex ? "█".repeat(24) : " "
                     color: "#111111"
                 }
 
@@ -58,7 +58,7 @@ DisplayContainer {
 
         CustomText {
             x: 0
-            y: 24 + 76 * scrollIndicatorHeight
+            y: 20 + 84 * scrollIndicatorHeight
             text: "┃"
         }
 

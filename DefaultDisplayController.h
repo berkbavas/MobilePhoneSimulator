@@ -10,10 +10,6 @@ class DefaultDisplayController : public Controller
 public:
     explicit DefaultDisplayController(QObject *parent = nullptr);
 
-public:
-    virtual void init() override;
-    virtual void onAction(Action *action) override;
-
 private:
     Display mDisplay;
 };

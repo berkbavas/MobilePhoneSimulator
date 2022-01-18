@@ -8,7 +8,7 @@ Menu::Menu(QObject *parent)
     , mId()
     , mCurrentIndex(0)
     , mFirstVisibleIndex(0)
-    , mLastVisibleIndex(5)
+    , mLastVisibleIndex(6)
 {
     setType((int) Item::Type::MainMenu);
 }
@@ -39,7 +39,7 @@ void Menu::reset()
 {
     setCurrentIndex(0);
     setFirstVisibleIndex(0);
-    setLastVisibleIndex(5);
+    setLastVisibleIndex(6);
 }
 
 void Menu::update()

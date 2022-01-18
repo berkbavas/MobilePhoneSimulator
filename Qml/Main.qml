@@ -12,7 +12,12 @@ Window {
         source: "../Resources/Fonts/JetBrainsMono-Regular.ttf"
     }
 
+    FontLoader {
+        source: "../Resources/Fonts/nokiafc22.ttf"
+    }
+
     Container {
         anchors.centerIn: parent
+        scale: 0.9 * Math.min(parent.width / 350, parent.height / 828);
     }
 }

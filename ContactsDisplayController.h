@@ -27,7 +27,6 @@ public:
     explicit ContactsDisplayController(QObject *parent = nullptr);
 
 public:
-    virtual void init() override;
     virtual void onAction(Action *action) override;
 
 private slots:

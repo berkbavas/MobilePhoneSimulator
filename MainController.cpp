@@ -6,6 +6,7 @@
 #include "Helper.h"
 #include "MainDisplayController.h"
 
+#include <QDateTime>
 #include <QQmlContext>
 
 MainController::MainController(QObject *parent)
@@ -13,7 +14,9 @@ MainController::MainController(QObject *parent)
     , mActiveController(nullptr)
     , mActiveItem(nullptr)
     , mEngine(nullptr)
-{}
+{
+    connect(&mTimer, &QTimer::timeout, this, &MainController::update);
+}
 
 void MainController::init(QQmlApplicationEngine *engine)
 {
@@ -32,11 +35,9 @@ void MainController::init(QQmlApplicationEngine *engine)
     mContactsDisplayController = new ContactsDisplayController;
     mControllers.insert("ContactsDisplayController", mContactsDisplayController);
 
-    QMap<QString, Controller *>::iterator it;
-
-    for (it = mControllers.begin(); it != mControllers.end(); it++) {
-        connect(it.value(), &Controller::activeItemChanged, this, &MainController::onActiveItemChanged);
-        it.value()->init();
+    for (const auto &controller : qAsConst(mControllers)) {
+        connect(controller, &Controller::activeItemChanged, this, &MainController::setActiveItem);
+        controller->init();
     }
 
     // Connections
@@ -47,11 +48,15 @@ void MainController::init(QQmlApplicationEngine *engine)
     });
 
     setActiveController(mMainDisplayController);
+    mCurrentTime = QDateTime::currentMSecsSinceEpoch();
+    mPreviousTime = mCurrentTime;
+    mSimulationTime = 0;
+    mTimer.start(20);
 }
 
 void MainController::onAction(int button, int actionType)
 {
-    qDebug() << "MainController::onAction" << button << actionType;
+    qDebug() << Q_FUNC_INFO << button << actionType;
 
     Action action(button, actionType);
 
@@ -62,30 +67,6 @@ void MainController::onAction(int button, int actionType)
         return;
 
     switch (action.button()) {
-    case Enums::Button::Zero:
-        break;
-    case Enums::Button::One:
-        break;
-    case Enums::Button::Two:
-        break;
-    case Enums::Button::Three:
-        break;
-    case Enums::Button::Four:
-        break;
-    case Enums::Button::Five:
-        break;
-    case Enums::Button::Six:
-        break;
-    case Enums::Button::Seven:
-        break;
-    case Enums::Button::Eight:
-        break;
-    case Enums::Button::Nine:
-        break;
-    case Enums::Button::Star:
-        break;
-    case Enums::Button::Square:
-        break;
     case Enums::Button::Clear:
         if (mActiveController != mMainDisplayController)
             setActiveController(mMainMenuController);
@@ -93,25 +74,19 @@ void MainController::onAction(int button, int actionType)
     case Enums::Button::Space:
         setActiveController(mMainMenuController);
         break;
-    case Enums::Button::Up:
-        break;
-    case Enums::Button::Down:
+    default:
         break;
     }
 }
 
-void MainController::onActiveItemChanged(Item *activeItem)
+void MainController::update()
 {
-    qDebug() << "MainController::onActiveItemChanged" << activeItem;
+    mPreviousTime = mCurrentTime;
+    mCurrentTime = QDateTime::currentMSecsSinceEpoch();
+    mSimulationTime += mCurrentTime - mPreviousTime;
 
-    setActiveItem(activeItem);
-
-    if (activeItem->type() == 0)
-        setMainMenu(dynamic_cast<Menu *>(activeItem));
-    else if (activeItem->type() == 1)
-        setSimpleMenu(dynamic_cast<SimpleMenu *>(activeItem));
-    else if (activeItem->type() == 2)
-        setDisplay(dynamic_cast<Display *>(activeItem));
+    if (mActiveController)
+        mActiveController->update(mCurrentTime - mPreviousTime);
 }
 
 Item *MainController::activeItem() const
@@ -121,50 +96,13 @@ Item *MainController::activeItem() const
 
 void MainController::setActiveItem(Item *newActiveItem)
 {
+    qDebug() << "Receiver:" << Q_FUNC_INFO << "Sender:" << QObject::sender() << newActiveItem;
+
     if (mActiveItem == newActiveItem)
         return;
 
     mActiveItem = newActiveItem;
     emit activeItemChanged();
-}
-
-Display *MainController::display() const
-{
-    return mDisplay;
-}
-
-void MainController::setDisplay(Display *newDisplay)
-{
-    if (mDisplay == newDisplay)
-        return;
-    mDisplay = newDisplay;
-    emit displayChanged();
-}
-
-Menu *MainController::mainMenu() const
-{
-    return mMainMenu;
-}
-
-void MainController::setMainMenu(Menu *newMainMenu)
-{
-    if (mMainMenu == newMainMenu)
-        return;
-    mMainMenu = newMainMenu;
-    emit mainMenuChanged();
-}
-
-SimpleMenu *MainController::simpleMenu() const
-{
-    return mSimpleMenu;
-}
-
-void MainController::setSimpleMenu(SimpleMenu *newSimpleMenu)
-{
-    if (mSimpleMenu == newSimpleMenu)
-        return;
-    mSimpleMenu = newSimpleMenu;
-    emit simpleMenuChanged();
 }
 
 Controller *MainController::activeController() const

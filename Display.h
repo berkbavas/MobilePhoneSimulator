@@ -12,6 +12,8 @@ class Display : public Item
     Q_PROPERTY(QString row2 READ row2 WRITE setRow2 NOTIFY row2Changed)
     Q_PROPERTY(QString row3 READ row3 WRITE setRow3 NOTIFY row3Changed)
     Q_PROPERTY(QString row4 READ row4 WRITE setRow4 NOTIFY row4Changed)
+    Q_PROPERTY(QString row5 READ row5 WRITE setRow5 NOTIFY row5Changed)
+    Q_PROPERTY(QString row6 READ row6 WRITE setRow6 NOTIFY row6Changed)
 
 public:
     explicit Display(QObject *parent = nullptr);
@@ -34,6 +36,16 @@ public:
     const QString &row4() const;
     void setRow4(const QString &newRow4);
 
+    const QString &row5() const;
+    void setRow5(const QString &newRow5);
+
+    const QString &row6() const;
+    void setRow6(const QString &newRow6);
+
+public slots:
+    void clearRows();
+    void clearAll();
+
 signals:
     void titleChanged();
     void row0Changed();
@@ -41,6 +53,8 @@ signals:
     void row2Changed();
     void row3Changed();
     void row4Changed();
+    void row5Changed();
+    void row6Changed();
 
 protected:
     QString mTitle;
@@ -49,6 +63,8 @@ protected:
     QString mRow2;
     QString mRow3;
     QString mRow4;
+    QString mRow5;
+    QString mRow6;
 };
 
 #endif // DISPLAY_H

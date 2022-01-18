@@ -14,11 +14,10 @@ public:
     explicit MainMenuController(QObject *parent = nullptr);
 
 public:
-    virtual void init() override;
     virtual void onAction(Action *action) override;
 
 signals:
-    void controllerChanged(QString controllerName, int controllerMode);
+    void controllerChanged(QString controllerName, int controllerMode = -1);
 
 private:
     Menu *mActiveMenu;

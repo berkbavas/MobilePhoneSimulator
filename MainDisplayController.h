@@ -11,8 +11,8 @@ public:
     explicit MainDisplayController(QObject *parent = nullptr);
 
 public:
-    virtual void init() override;
     virtual void onAction(Action *action) override;
+    virtual void update(quint64 milisecondsElapesed) override;
 
 private:
     Display mDisplay;

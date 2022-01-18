@@ -4,6 +4,7 @@ Display::Display(QObject *parent)
     : Item{parent}
 {
     setType((int) Item::Type::Display);
+    clearRows();
 }
 
 const QString &Display::title() const
@@ -82,4 +83,47 @@ void Display::setRow4(const QString &newRow4)
         return;
     mRow4 = newRow4;
     emit row4Changed();
+}
+
+const QString &Display::row5() const
+{
+    return mRow5;
+}
+
+void Display::setRow5(const QString &newRow5)
+{
+    if (mRow5 == newRow5)
+        return;
+    mRow5 = newRow5;
+    emit row5Changed();
+}
+
+const QString &Display::row6() const
+{
+    return mRow6;
+}
+
+void Display::setRow6(const QString &newRow6)
+{
+    if (mRow6 == newRow6)
+        return;
+    mRow6 = newRow6;
+    emit row6Changed();
+}
+
+void Display::clearRows()
+{
+    setRow0(" ");
+    setRow1(" ");
+    setRow2(" ");
+    setRow3(" ");
+    setRow4(" ");
+    setRow5(" ");
+    setRow6(" ");
+}
+
+void Display::clearAll()
+{
+    setTitle(" ");
+    clearRows();
 }
