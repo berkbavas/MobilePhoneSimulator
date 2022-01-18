@@ -49,6 +49,8 @@ private:
     quint64 mCurrentTime;
     quint64 mPreviousTime;
     quint64 mSimulationTime;
+
+    LineEditor *mLineEditor;
 };
 
 #endif // MAINCONTROLLER_H

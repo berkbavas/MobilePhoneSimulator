@@ -32,7 +32,7 @@ void ContactsDisplayController::onAction(Action *action)
             action->setConsumed(true);
         }
         break;
-    case Enums::Button::Space:
+    case Enums::Button::Enter:
         if (mCurrentDisplay == DisplayType::List) {
             mVisitedDisplays << DisplayType::List;
             mCurrentDisplay = DisplayType::Details;

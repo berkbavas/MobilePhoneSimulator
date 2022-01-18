@@ -11,19 +11,9 @@ Enums::Button Action::button() const
     return mButton;
 }
 
-void Action::setButton(Enums::Button newButton)
-{
-    mButton = newButton;
-}
-
 Enums::Action Action::action() const
 {
     return mAction;
-}
-
-void Action::setAction(Enums::Action newAction)
-{
-    mAction = newAction;
 }
 
 bool Action::consumed() const

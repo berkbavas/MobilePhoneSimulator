@@ -6,6 +6,7 @@ QT += quick
 
 SOURCES += \
         Action.cpp \
+        Charset.cpp \
         Contact.cpp \
         ContactsDisplayController.cpp \
         Controller.cpp \
@@ -13,6 +14,7 @@ SOURCES += \
         Display.cpp \
         Helper.cpp \
         Item.cpp \
+        LineEditor.cpp \
         MainController.cpp \
         MainDisplayController.cpp \
         MainMenuController.cpp \
@@ -35,6 +37,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     Action.h \
+    Charset.h \
     Contact.h \
     ContactsDisplayController.h \
     Controller.h \
@@ -43,6 +46,7 @@ HEADERS += \
     Enums.h \
     Helper.h \
     Item.h \
+    LineEditor.h \
     MainController.h \
     MainDisplayController.h \
     MainMenuController.h \

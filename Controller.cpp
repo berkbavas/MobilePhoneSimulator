@@ -36,3 +36,8 @@ void Controller::setActive(bool newActive)
     mActive = newActive;
     emit activeChanged();
 }
+
+void Controller::setLineEditor(LineEditor *newLineEditor)
+{
+    mLineEditor = newLineEditor;
+}

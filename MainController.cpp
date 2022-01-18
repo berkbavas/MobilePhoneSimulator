@@ -15,6 +15,7 @@ MainController::MainController(QObject *parent)
     , mActiveItem(nullptr)
     , mEngine(nullptr)
 {
+    mLineEditor = new LineEditor;
     connect(&mTimer, &QTimer::timeout, this, &MainController::update);
 }
 
@@ -37,6 +38,7 @@ void MainController::init(QQmlApplicationEngine *engine)
 
     for (const auto &controller : qAsConst(mControllers)) {
         connect(controller, &Controller::activeItemChanged, this, &MainController::setActiveItem);
+        controller->setLineEditor(mLineEditor);
         controller->init();
     }
 
@@ -71,7 +73,7 @@ void MainController::onAction(int button, int actionType)
         if (mActiveController != mMainDisplayController)
             setActiveController(mMainMenuController);
         break;
-    case Enums::Button::Space:
+    case Enums::Button::Enter:
         setActiveController(mMainMenuController);
         break;
     default:
@@ -84,6 +86,8 @@ void MainController::update()
     mPreviousTime = mCurrentTime;
     mCurrentTime = QDateTime::currentMSecsSinceEpoch();
     mSimulationTime += mCurrentTime - mPreviousTime;
+
+    mLineEditor->update(mCurrentTime - mPreviousTime);
 
     if (mActiveController)
         mActiveController->update(mCurrentTime - mPreviousTime);

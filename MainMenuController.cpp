@@ -32,7 +32,7 @@ void MainMenuController::onAction(Action *action)
             emit activeItemChanged(mActiveMenu);
         }
         break;
-    case Enums::Button::Space:
+    case Enums::Button::Enter:
         if (mActiveMenu) {
             mVisitedMenus << mActiveMenu;
             Menu *selected = mActiveMenu->selected();

@@ -3,6 +3,7 @@
 
 #include "Action.h"
 #include "Item.h"
+#include "LineEditor.h"
 
 #include <QObject>
 
@@ -24,6 +25,8 @@ public:
     bool active() const;
     void setActive(bool newActive);
 
+    void setLineEditor(LineEditor *newLineEditor);
+
 signals:
     void modeChanged();
     void activeChanged();
@@ -32,6 +35,7 @@ signals:
 protected:
     int mMode;
     bool mActive;
+    LineEditor *mLineEditor;
 };
 
 #endif // CONTROLLER_H

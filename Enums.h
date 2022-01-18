@@ -17,9 +17,10 @@ enum class Button : int { //
     Star,
     Square,
     Clear,
-    Space,
+    Enter,
     Up,
-    Down
+    Down,
+    None
 };
 
 enum class Action { //
