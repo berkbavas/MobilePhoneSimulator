@@ -10,7 +10,6 @@
         <file>Qml/MainMenu.qml</file>
         <file>Qml/Main.qml</file>
         <file>Qml/Screen.qml</file>
-        <file>Resources/Fonts/JetBrainsMono-Regular.ttf</file>
         <file>Resources/Images/0.png</file>
         <file>Resources/Images/1.png</file>
         <file>Resources/Images/2.png</file>
@@ -31,6 +30,9 @@
         <file>Resources/Images/Square.png</file>
         <file>Resources/Images/Star.png</file>
         <file>Qml/Display.qml</file>
-        <file>Resources/Fonts/nokiafc22.ttf</file>
+        <file>Resources/Fonts/ClassicConsoleNeue/clacon2.ttf</file>
+        <file>Resources/Fonts/JetBrains/JetBrainsMono-Regular.ttf</file>
+        <file>Resources/Fonts/Nokia/nokiafc22.ttf</file>
+        <file>Resources/Fonts/JetBrains/JetBrainsMono-Bold.ttf</file>
     </qresource>
 </RCC>

@@ -24,7 +24,7 @@ const QString &Charset::hint() const
 
 QString Charset::next()
 {
-    return mChars.at(mCurrentIndex++ % mChars.length());
+    return mChars.isEmpty() ? QString("") : mChars.at(mCurrentIndex++ % mChars.length());
 }
 
 void Charset::reset()

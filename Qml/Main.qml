@@ -9,11 +9,11 @@ Window {
     color:  "#ffffff"
 
     FontLoader {
-        source: "../Resources/Fonts/JetBrainsMono-Regular.ttf"
+        source: "../Resources/Fonts/JetBrains/JetBrainsMono-Regular.ttf"
     }
 
     FontLoader {
-        source: "../Resources/Fonts/nokiafc22.ttf"
+        source: "../Resources/Fonts/JetBrains/JetBrainsMono-Bold.ttf"
     }
 
     Container {
