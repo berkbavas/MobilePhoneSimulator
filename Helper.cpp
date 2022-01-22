@@ -79,7 +79,7 @@ Menu *Helper::parseMenus(QJsonObject object, Menu *parent, int index)
 
     object["name"].isNull() ? menu->setName("null") : menu->setName(object["name"].toString());
     object["title"].isNull() ? menu->setTitle(menu->name()) : menu->setTitle(object["title"].toString());
-    menu->setNamePrefix(QString::number(index + 1));
+    object["namePrefix"].isNull() ? menu->setNamePrefix(QString::number(index + 1)) : menu->setNamePrefix(object["namePrefix"].toString());
     parent->id().isEmpty() ? menu->setId(QString::number(index + 1)) : menu->setId(parent->id() + "." + QString::number(index + 1));
     object["controllerName"].isNull() ? menu->setControllerName(parent->controllerName())
                                       : menu->setControllerName(object["controllerName"].toString());

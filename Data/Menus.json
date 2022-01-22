@@ -7,103 +7,52 @@
 			"controllerName": "ContactsDisplayController",
 			"children": [
 				{
-					"name": "Show Contact",
-					"controllerMode": 0
+					"name": "Call Contact"
 				},
 				{
-					"name": "Call Contact",
-					"controllerMode": 1
+					"name": "Show Contact"
 				},
 				{
-					"name": "Add Contact",
-					"controllerMode": 2
+					"name": "Add Contact"
 				},
 				{
-					"name": "Edit Contact",
-					"controllerMode": 3
+					"name": "Edit Contact"
 				},
 				{
-					"name": "Delete Contact",
-					"controllerMode": 4
+					"name": "Delete Contact"
 				}
 			]
 		},
 		{
-			"name": "Empty",
+			"name": "Messages",
 			"children": [
 				{
-					"name": "Empty",
-					"children": [
-						{
-							"name": "Empty",
-							"children": [
-								{
-									"name": "Empty",
-									"children": [
-										{
-											"name": "Empty"
-										}
-									]
-								}
-							]
-						}
-					]
+					"name": "Write Message"
 				},
 				{
-					"name": "Empty"
+					"name": "Show Message"
 				},
 				{
-					"name": "Empty"
-				},
-				{
-					"name": "Empty"
-				},
-				{
-					"name": "Empty"
-				},
-				{
-					"name": "Empty"
-				},
-				{
-					"name": "Empty"
-				},
-				{
-					"name": "Empty"
-				},
-				{
-					"name": "Empty"
-				},
-				{
-					"name": "Empty"
+					"name": "Delete Message"
 				}
 			]
 		},
 		{
-			"name": "Empty"
+			"name": "Calls",
+			"children": [
+				{
+					"name": "Call"
+				},
+				{
+					"name": "Call History"
+				},
+				{
+					"name": "Clear Call Histroy"
+				}
+			]
 		},
 		{
-			"name": "Empty"
-		},
-		{
-			"name": "Empty"
-		},
-		{
-			"name": "Empty"
-		},
-		{
-			"name": "Empty"
-		},
-		{
-			"name": "Empty"
-		},
-		{
-			"name": "Empty"
-		},
-		{
-			"name": "Empty"
-		},
-		{
-			"name": "Empty"
+			"name": "Settings"
 		}
 	]
 }

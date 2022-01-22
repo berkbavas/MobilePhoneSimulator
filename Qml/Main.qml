@@ -12,9 +12,6 @@ Window {
         source: "../Resources/Fonts/JetBrains/JetBrainsMono-Regular.ttf"
     }
 
-    FontLoader {
-        source: "../Resources/Fonts/JetBrains/JetBrainsMono-Bold.ttf"
-    }
 
     Container {
         anchors.centerIn: parent
