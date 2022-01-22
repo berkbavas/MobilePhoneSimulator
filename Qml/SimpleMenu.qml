@@ -21,9 +21,9 @@ DisplayContainer {
     Column {
         x: 0
         y: 25
+
         Repeater {
             model: rows
-
             Item {
                 implicitWidth: background.paintedWidth
                 implicitHeight: background.paintedHeight

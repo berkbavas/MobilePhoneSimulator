@@ -36,9 +36,6 @@ public slots:
     QString getHint();
     int getNumberOfRemainingCharacters();
 
-signals:
-    void finished();
-
 private:
     EditMode mEditMode;
     Enums::Button mCurrentButton;

@@ -11,8 +11,6 @@ class Menu : public Item
     Q_PROPERTY(QString namePrefix READ namePrefix WRITE setNamePrefix NOTIFY namePrefixChanged)
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
     Q_PROPERTY(QString id READ id WRITE setId NOTIFY idChanged)
-    Q_PROPERTY(QString controllerName READ controllerName WRITE setControllerName NOTIFY controllerNameChanged)
-    Q_PROPERTY(int controllerMode READ controllerMode WRITE setControllerMode NOTIFY controllerModeChanged)
     Q_PROPERTY(int currentIndex READ currentIndex WRITE setCurrentIndex NOTIFY currentIndexChanged)
     Q_PROPERTY(int firstVisibleIndex READ firstVisibleIndex WRITE setFirstVisibleIndex NOTIFY firstVisibleIndexChanged)
     Q_PROPERTY(int lastVisibleIndex READ lastVisibleIndex WRITE setLastVisibleIndex NOTIFY lastVisibleIndexChanged)
@@ -52,8 +50,8 @@ public:
 
 public slots:
     void addChild(Menu *child);
-    bool increment();
-    bool decrement();
+    void increment();
+    void decrement();
     void reset();
     void update();
     Menu *selected();

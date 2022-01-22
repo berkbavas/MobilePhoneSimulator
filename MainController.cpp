@@ -1,6 +1,5 @@
 #include "MainController.h"
 #include "Action.h"
-#include "ContactsDisplayController.h"
 #include "DefaultDisplayController.h"
 #include "Enums.h"
 #include "Helper.h"
@@ -8,6 +7,8 @@
 
 #include <QDateTime>
 #include <QQmlContext>
+
+#include <Contacts/ContactsDisplayController.h>
 
 MainController::MainController(QObject *parent)
     : QObject{parent}
@@ -37,17 +38,11 @@ void MainController::init(QQmlApplicationEngine *engine)
     mControllers.insert("ContactsDisplayController", mContactsDisplayController);
 
     for (const auto &controller : qAsConst(mControllers)) {
+        connect(controller, &Controller::requestCreated, this, &MainController::onRequestCreated);
         connect(controller, &Controller::activeItemChanged, this, &MainController::setActiveItem);
         controller->setLineEditor(mLineEditor);
         controller->init();
     }
-
-    // Connections
-    connect(mMainMenuController, &MainMenuController::controllerChanged, this, [=](QString controllerName, int controllerMode) {
-        Controller *controller = mControllers.value(controllerName, mDefaultDisplayController);
-        controller->setMode(controllerMode);
-        setActiveController(controller);
-    });
 
     setActiveController(mMainDisplayController);
     mCurrentTime = QDateTime::currentMSecsSinceEpoch();
@@ -91,6 +86,19 @@ void MainController::update()
 
     if (mActiveController)
         mActiveController->update(mCurrentTime - mPreviousTime);
+}
+
+void MainController::onRequestCreated(Request *request)
+{
+    ChangeControllerRequest *changeControllerRequest = dynamic_cast<ChangeControllerRequest *>(request);
+
+    if (changeControllerRequest) {
+        Controller *controller = mControllers.value(changeControllerRequest->controllerName(), nullptr);
+        if (controller) {
+            controller->setMode(changeControllerRequest->controllerMode());
+            setActiveController(controller);
+        }
+    }
 }
 
 Item *MainController::activeItem() const

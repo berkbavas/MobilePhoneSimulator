@@ -3,18 +3,18 @@
 
 #include "Action.h"
 #include "Item.h"
-#include "LineEditor.h"
+#include "Request.h"
 
 #include <QObject>
+
+#include <LineEditor/LineEditor.h>
 
 class Controller : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int mode READ mode WRITE setMode NOTIFY modeChanged)
-    Q_PROPERTY(bool active READ active WRITE setActive NOTIFY activeChanged)
-
 public:
     explicit Controller(QObject *parent = nullptr);
+
     virtual void init();
     virtual void onAction(Action *action);
     virtual void update(quint64 milisecondsElapsed);
@@ -31,6 +31,7 @@ signals:
     void modeChanged();
     void activeChanged();
     void activeItemChanged(Item *activeItem);
+    void requestCreated(Request *request);
 
 protected:
     int mMode;

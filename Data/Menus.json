@@ -7,19 +7,24 @@
 			"controllerName": "ContactsDisplayController",
 			"children": [
 				{
-					"name": "Call Contact"
+					"name": "Call Contact",
+					"controllerMode": 0
 				},
 				{
-					"name": "Show Contact"
+					"name": "Show Contact",
+					"controllerMode": 1
 				},
 				{
-					"name": "Add Contact"
+					"name": "Add Contact",
+					"controllerMode": 2
 				},
 				{
-					"name": "Edit Contact"
+					"name": "Edit Contact",
+					"controllerMode": 3
 				},
 				{
-					"name": "Delete Contact"
+					"name": "Delete Contact",
+					"controllerMode": 4
 				}
 			]
 		},

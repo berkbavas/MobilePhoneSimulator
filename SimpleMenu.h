@@ -36,8 +36,8 @@ public slots:
     void setRow(int index, const QString &row);
     void clearAll();
     void clearRows();
-    bool increment();
-    bool decrement();
+    void increment();
+    void decrement();
     void reset();
     void update();
 

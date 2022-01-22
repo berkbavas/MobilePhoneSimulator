@@ -19,11 +19,6 @@ LineEditor::LineEditor(QObject *parent)
 
 void LineEditor::onAction(Action *action)
 {
-    if (getNumberOfRemainingCharacters() == 0) {
-        action->setConsumed(true);
-        return;
-    }
-
     switch (action->button()) {
     case Enums::Button::Zero:
     case Enums::Button::One:
@@ -35,26 +30,28 @@ void LineEditor::onAction(Action *action)
     case Enums::Button::Seven:
     case Enums::Button::Eight:
     case Enums::Button::Nine:
-        if (mEditMode == EditMode::All) {
-            mEditing = true;
-            mEditingTimeElapsed = 0;
-            if (mCurrentButton == action->button()) {
-                if (mCurrentCharset)
-                    mEditingChar = isUpperCaseEnabled() ? mCurrentCharset->next().toUpper() : mCurrentCharset->next();
-            } else {
-                mCurrentButton = action->button();
-                mLine += mEditingChar;
-                mCurrentCharset = ALL_CHARSET_MAP.value(mCurrentButton, nullptr);
-                if (mCurrentCharset) {
-                    mCurrentCharset->reset();
-                    mEditingChar = isUpperCaseEnabled() ? mCurrentCharset->next().toUpper() : mCurrentCharset->next();
+        if (getNumberOfRemainingCharacters() != 0) {
+            if (mEditMode == EditMode::All) {
+                mEditing = true;
+                mEditingTimeElapsed = 0;
+                if (mCurrentButton == action->button()) {
+                    if (mCurrentCharset)
+                        mEditingChar = isUpperCaseEnabled() ? mCurrentCharset->next().toUpper() : mCurrentCharset->next();
+                } else {
+                    mCurrentButton = action->button();
+                    mLine += mEditingChar;
+                    mCurrentCharset = ALL_CHARSET_MAP.value(mCurrentButton, nullptr);
+                    if (mCurrentCharset) {
+                        mCurrentCharset->reset();
+                        mEditingChar = isUpperCaseEnabled() ? mCurrentCharset->next().toUpper() : mCurrentCharset->next();
+                    }
                 }
-            }
-        } else if (mEditMode == EditMode::OnlyNumbers) {
-            mCurrentButton = action->button();
-            mCurrentCharset = NUMBER_CHARSET_MAP.value(mCurrentButton, nullptr);
-            if (mCurrentCharset) {
-                mLine += mCurrentCharset->next();
+            } else if (mEditMode == EditMode::OnlyNumbers) {
+                mCurrentButton = action->button();
+                mCurrentCharset = NUMBER_CHARSET_MAP.value(mCurrentButton, nullptr);
+                if (mCurrentCharset) {
+                    mLine += mCurrentCharset->next();
+                }
             }
         }
         action->setConsumed(true);
@@ -73,8 +70,7 @@ void LineEditor::onAction(Action *action)
         mEditingTimeElapsed = 0;
 
         if (mLine.isEmpty()) {
-            action->setConsumed(true);
-            emit finished();
+            action->setConsumed(false);
             return;
         }
 
@@ -87,6 +83,18 @@ void LineEditor::onAction(Action *action)
             mLine = mLine.left(mLine.length() - 1);
         }
         action->setConsumed(true);
+        break;
+    case Enums::Button::Enter:
+        mLine += mEditingChar;
+        action->setConsumed(false);
+        break;
+    case Enums::Button::Up:
+    case Enums::Button::Down:
+        mLine += mEditingChar;
+        mEditingChar.clear();
+        mEditing = false;
+        mCurrentButton = action->button();
+        mCurrentCharset = nullptr;
         break;
     default:
         break;

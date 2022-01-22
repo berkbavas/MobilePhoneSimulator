@@ -16,15 +16,7 @@ public:
     virtual void update(quint64 milisecondsElapesed) override;
 
 private:
-    enum class DisplayType {
-        Main,
-        Call,
-    };
-
     Display mMainDisplay;
-    Display mCallDisplay;
-
-    DisplayType mCurrentDisplay;
 };
 
 #endif // MAINDISPLAYCONTROLLER_H

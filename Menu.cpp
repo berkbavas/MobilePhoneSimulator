@@ -13,26 +13,16 @@ Menu::Menu(QObject *parent)
     setType((int) Item::Type::MainMenu);
 }
 
-bool Menu::increment()
+void Menu::increment()
 {
-    if (mCurrentIndex < mChildren.size() - 1) {
-        setCurrentIndex(mCurrentIndex + 1);
-        update();
-        return true;
-    }
-
-    return false;
+    setCurrentIndex((mCurrentIndex + 1) % mChildren.length());
+    update();
 }
 
-bool Menu::decrement()
+void Menu::decrement()
 {
-    if (0 < mCurrentIndex) {
-        setCurrentIndex(mCurrentIndex - 1);
-        update();
-        return true;
-    }
-
-    return false;
+    setCurrentIndex((mCurrentIndex - 1) < 0 ? (mCurrentIndex - 1) + mChildren.length() : (mCurrentIndex - 1) % mChildren.length());
+    update();
 }
 
 void Menu::reset()

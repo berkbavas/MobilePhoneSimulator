@@ -1,10 +1,13 @@
 #include "Display.h"
 
+const int Display::NUMBER_OF_ROWS = 7;
+const int Display::NUMBER_OF_CHARS = 25;
+
 Display::Display(QObject *parent)
     : Item{parent}
 {
     setType((int) Item::Type::Display);
-    clearRows();
+    clearAll();
 }
 
 const QString &Display::title() const
@@ -20,110 +23,58 @@ void Display::setTitle(const QString &newTitle)
     emit titleChanged();
 }
 
-const QString &Display::row0() const
+const QStringList &Display::rows() const
 {
-    return mRow0;
+    return mRows;
 }
 
-void Display::setRow0(const QString &newRow0)
+void Display::setRow(int index, const QString &row, Alignment alignment)
 {
-    if (mRow0 == newRow0)
-        return;
-    mRow0 = newRow0;
-    emit row0Changed();
+    if (index < NUMBER_OF_ROWS) {
+        switch (alignment) {
+        case Display::Alignment::Left:
+            mRows.removeAt(index);
+            mRows.insert(index, row.leftJustified(NUMBER_OF_CHARS, ' '));
+            break;
+        case Display::Alignment::Center: {
+            int left = (NUMBER_OF_CHARS - row.length()) / 2.0;
+            int right = NUMBER_OF_CHARS - left;
+            mRows.removeAt(index);
+            mRows.insert(index, QString(" ").repeated(left) + row + QString(" ").repeated(right));
+            break;
+        }
+
+        case Display::Alignment::Right:
+            mRows.removeAt(index);
+            mRows.insert(index, row.leftJustified(NUMBER_OF_CHARS, ' '));
+            break;
+        }
+
+        emit rowsChanged();
+    }
 }
 
-const QString &Display::row1() const
+void Display::setRow(int index, const QString &left, const QString &right)
 {
-    return mRow1;
-}
-
-void Display::setRow1(const QString &newRow1)
-{
-    if (mRow1 == newRow1)
-        return;
-    mRow1 = newRow1;
-    emit row1Changed();
-}
-
-const QString &Display::row2() const
-{
-    return mRow2;
-}
-
-void Display::setRow2(const QString &newRow2)
-{
-    if (mRow2 == newRow2)
-        return;
-    mRow2 = newRow2;
-    emit row2Changed();
-}
-
-const QString &Display::row3() const
-{
-    return mRow3;
-}
-
-void Display::setRow3(const QString &newRow3)
-{
-    if (mRow3 == newRow3)
-        return;
-    mRow3 = newRow3;
-    emit row3Changed();
-}
-
-const QString &Display::row4() const
-{
-    return mRow4;
-}
-
-void Display::setRow4(const QString &newRow4)
-{
-    if (mRow4 == newRow4)
-        return;
-    mRow4 = newRow4;
-    emit row4Changed();
-}
-
-const QString &Display::row5() const
-{
-    return mRow5;
-}
-
-void Display::setRow5(const QString &newRow5)
-{
-    if (mRow5 == newRow5)
-        return;
-    mRow5 = newRow5;
-    emit row5Changed();
-}
-
-const QString &Display::row6() const
-{
-    return mRow6;
-}
-
-void Display::setRow6(const QString &newRow6)
-{
-    if (mRow6 == newRow6)
-        return;
-    mRow6 = newRow6;
-    emit row6Changed();
-}
-
-void Display::clearRows()
-{
-    setRow0(" ");
-    setRow1(" ");
-    setRow2(" ");
-    setRow3(" ");
-    setRow4(" ");
-    setRow5(" ");
-    setRow6(" ");
+    if (index < NUMBER_OF_ROWS) {
+        mRows.removeAt(index);
+        mRows.insert(index, left + QString(" ").repeated(NUMBER_OF_CHARS - left.length() - right.length()) + right);
+        emit rowsChanged();
+    }
 }
 
 void Display::clearAll()
 {
     setTitle(" ");
     clearRows();
+}
+
+void Display::clearRows()
+{
+    mRows.clear();
+
+    for (int i = 0; i < NUMBER_OF_ROWS; ++i)
+        mRows << " ";
+
+    emit rowsChanged();
 }

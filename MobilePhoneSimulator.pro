@@ -6,20 +6,28 @@ QT += quick
 
 SOURCES += \
         Action.cpp \
-        Charset.cpp \
-        Contact.cpp \
-        ContactsDisplayController.cpp \
+        ChangeControllerRequest.cpp \
+        Contacts/AddContactModeHandler.cpp \
+        Contacts/CallContactModeHandler.cpp \
+        Contacts/Contact.cpp \
+        Contacts/ContactsDisplayController.cpp \
+        Contacts/DeleteContactModeHandler.cpp \
+        Contacts/EditContactModeHandler.cpp \
+        Contacts/ModeHandler.cpp \
+        Contacts/ShowContactModeHandler.cpp \
         Controller.cpp \
         DefaultDisplayController.cpp \
         Display.cpp \
         Helper.cpp \
         Item.cpp \
-        LineEditor.cpp \
+        LineEditor/Charset.cpp \
+        LineEditor/LineEditor.cpp \
         MainController.cpp \
         MainDisplayController.cpp \
         MainMenuController.cpp \
         Menu.cpp \
         Main.cpp \
+        Request.cpp \
         SimpleMenu.cpp
 
 RESOURCES += qml.qrc
@@ -37,18 +45,26 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     Action.h \
-    Charset.h \
-    Contact.h \
-    ContactsDisplayController.h \
+    ChangeControllerRequest.h \
+    Contacts/AddContactModeHandler.h \
+    Contacts/CallContactModeHandler.h \
+    Contacts/Contact.h \
+    Contacts/ContactsDisplayController.h \
+    Contacts/DeleteContactModeHandler.h \
+    Contacts/EditContactModeHandler.h \
+    Contacts/ModeHandler.h \
+    Contacts/ShowContactModeHandler.h \
     Controller.h \
     DefaultDisplayController.h \
     Display.h \
     Enums.h \
     Helper.h \
     Item.h \
-    LineEditor.h \
+    LineEditor/Charset.h \
+    LineEditor/LineEditor.h \
     MainController.h \
     MainDisplayController.h \
     MainMenuController.h \
     Menu.h \
+    Request.h \
     SimpleMenu.h

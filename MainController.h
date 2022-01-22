@@ -30,6 +30,9 @@ public slots:
     void onAction(int button, int actionType = -1);
     void update();
 
+private slots:
+    void onRequestCreated(Request *request);
+
 signals:
     void activeItemChanged();
 

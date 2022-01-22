@@ -16,6 +16,8 @@ MainMenuController::MainMenuController(QObject *parent)
                 mActiveMenu = mVisitedMenus.pop();
 
             emit activeItemChanged(mActiveMenu);
+        } else {
+            emit activeItemChanged(nullptr);
         }
     });
 }
@@ -26,7 +28,9 @@ void MainMenuController::onAction(Action *action)
     case Enums::Button::Clear:
         if (mActiveMenu == mMainMenu) {
             mMainMenu->reset();
-            emit controllerChanged("MainDisplayController");
+            mRequest.setStatus(Request::Status::Created);
+            mRequest.setControllerName("MainDisplayController");
+            emit requestCreated(&mRequest);
         } else {
             mActiveMenu = mVisitedMenus.pop();
             emit activeItemChanged(mActiveMenu);
@@ -41,7 +45,10 @@ void MainMenuController::onAction(Action *action)
                 mActiveMenu = selected;
                 emit activeItemChanged(selected);
             } else {
-                emit controllerChanged(selected->controllerName(), selected->controllerMode());
+                mRequest.setStatus(Request::Status::Created);
+                mRequest.setControllerName(selected->controllerName());
+                mRequest.setControllerMode(selected->controllerMode());
+                emit requestCreated(&mRequest);
             }
         }
         break;

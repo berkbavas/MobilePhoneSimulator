@@ -7,26 +7,16 @@ SimpleMenu::SimpleMenu(QObject *parent)
     reset();
 }
 
-bool SimpleMenu::increment()
+void SimpleMenu::increment()
 {
-    if (mCurrentIndex < mRows.size() - 1) {
-        setCurrentIndex(mCurrentIndex + 1);
-        update();
-        return true;
-    }
-
-    return false;
+    setCurrentIndex((mCurrentIndex + 1) % mRows.length());
+    update();
 }
 
-bool SimpleMenu::decrement()
+void SimpleMenu::decrement()
 {
-    if (0 < mCurrentIndex) {
-        setCurrentIndex(mCurrentIndex - 1);
-        update();
-        return true;
-    }
-
-    return false;
+    setCurrentIndex((mCurrentIndex - 1) < 0 ? (mCurrentIndex - 1) + mRows.length() : (mCurrentIndex - 1) % mRows.length());
+    update();
 }
 
 void SimpleMenu::reset()

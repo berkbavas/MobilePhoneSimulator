@@ -1,10 +1,11 @@
 #ifndef HELPER_H
 #define HELPER_H
 
-#include "Contact.h"
 #include "Menu.h"
 
 #include <QObject>
+
+#include <Contacts/Contact.h>
 
 class Helper : public QObject
 {

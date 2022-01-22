@@ -32,13 +32,7 @@ Item {
 
     Display {
         title: getItemType() === 2 ?  controller.activeItem.title : ""
-        row0: getItemType() === 2 ?  controller.activeItem.row0 : " "
-        row1: getItemType() === 2 ?  controller.activeItem.row1 : " "
-        row2: getItemType() === 2 ?  controller.activeItem.row2 : " "
-        row3: getItemType() === 2 ?  controller.activeItem.row3 : " "
-        row4: getItemType() === 2 ?  controller.activeItem.row4 : " "
-        row5: getItemType() === 2 ?  controller.activeItem.row5 : " "
-        row6: getItemType() === 2 ?  controller.activeItem.row6 : " "
+        rows: getItemType() === 2 ?  controller.activeItem.rows : []
         visible: getItemType() === 2
     }
 }
