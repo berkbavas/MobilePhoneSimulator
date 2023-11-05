@@ -1,5 +1,5 @@
 # Mobile Phone Simulator
-LCD Display implementation in QML.
+LCD screen implementation in QML.
 
 ## Build
 - Install `MSVC 2019 C++ 64-bit` compiler.
