@@ -7,4 +7,4 @@ LCD Display implementation in QML.
 - Simply open `MobilePhoneSimulator.pro` with QtCreator and build & run it.
 
 ## Screenshot
-![image](https://github.com/berkbavas/MobilePhoneSimulator/assets/53399385/b3c51a77-2868-4f8c-88b9-0544b8fd6d75)
+![image](https://github.com/berkbavas/MobilePhoneSimulator/assets/53399385/985a86e8-4975-43ed-a2fb-5fd4c08a8ff2)
