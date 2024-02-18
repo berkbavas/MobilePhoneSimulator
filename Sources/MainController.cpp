@@ -2,13 +2,12 @@
 #include "Action.h"
 #include "DefaultDisplayController.h"
 #include "Enums.h"
-#include "Helper.h"
 #include "MainDisplayController.h"
+
+#include "Contacts/ContactsDisplayController.h"
 
 #include <QDateTime>
 #include <QQmlContext>
-
-#include <Contacts/ContactsDisplayController.h>
 
 MainController::MainController(QObject *parent)
     : QObject{parent}

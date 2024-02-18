@@ -1,14 +1,15 @@
-#ifndef CALLCONTACTMODEHANDLER_H
-#define CALLCONTACTMODEHANDLER_H
+#ifndef SHOWCONTACTMODEHANDLER_H
+#define SHOWCONTACTMODEHANDLER_H
 
 #include "ModeHandler.h"
-#include <Display.h>
+#include "Display.h"
+
 #include <QObject>
 
-class CallContactModeHandler : public ModeHandler
+class ShowContactModeHandler : public ModeHandler
 {
 public:
-    explicit CallContactModeHandler(QObject *parent = nullptr);
+    explicit ShowContactModeHandler(QObject *parent = nullptr);
 
     virtual void onAction(Action *action) override;
 
@@ -26,4 +27,4 @@ private:
     DisplayType mCurrentDisplay;
 };
 
-#endif // CALLCONTACTMODEHANDLER_H
+#endif // SHOWCONTACTMODEHANDLER_H

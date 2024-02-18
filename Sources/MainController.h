@@ -2,9 +2,7 @@
 #define MAINCONTROLLER_H
 
 #include "Controller.h"
-#include "Display.h"
 #include "MainMenuController.h"
-#include "SimpleMenu.h"
 
 #include <QMap>
 #include <QObject>

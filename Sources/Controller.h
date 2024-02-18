@@ -5,9 +5,9 @@
 #include "Item.h"
 #include "Request.h"
 
-#include <QObject>
+#include "LineEditor/LineEditor.h"
 
-#include <LineEditor/LineEditor.h>
+#include <QObject>
 
 class Controller : public QObject
 {

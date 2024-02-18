@@ -1,6 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
+
 #include "Item.h"
+
 #include <QObject>
 
 class Menu : public Item

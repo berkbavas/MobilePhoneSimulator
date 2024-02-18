@@ -2,10 +2,9 @@
 #define MODEHANDLER_H
 
 #include "Contact.h"
-
-#include <LineEditor/LineEditor.h>
-#include <Request.h>
-#include <SimpleMenu.h>
+#include "LineEditor/LineEditor.h"
+#include "Request.h"
+#include "SimpleMenu.h"
 
 #include <QObject>
 

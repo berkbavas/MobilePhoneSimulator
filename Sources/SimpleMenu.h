@@ -2,6 +2,7 @@
 #define SIMPLEMENU_H
 
 #include "Item.h"
+
 #include <QObject>
 
 class SimpleMenu : public Item

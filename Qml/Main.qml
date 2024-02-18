@@ -9,9 +9,8 @@ Window {
     color:  "#ffffff"
 
     FontLoader {
-        source: "../Resources/Fonts/JetBrains/JetBrainsMono-Regular.ttf"
+        source: "qrc:/Resources/Fonts/JetBrains/JetBrainsMono-Regular.ttf"
     }
-
 
     Container {
         anchors.centerIn: parent

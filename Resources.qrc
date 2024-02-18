@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>Data/Contacts.json</file>
-        <file>Data/Menus.json</file>
         <file>Qml/AnimatedButton.qml</file>
         <file>Qml/SimpleMenu.qml</file>
         <file>Qml/Container.qml</file>
@@ -34,5 +32,8 @@
         <file>Resources/Fonts/JetBrains/JetBrainsMono-Regular.ttf</file>
         <file>Resources/Fonts/Nokia/nokiafc22.ttf</file>
         <file>Resources/Fonts/JetBrains/JetBrainsMono-Bold.ttf</file>
+        <file>Resources/Data/Contacts.json</file>
+        <file>Resources/Data/Menus.json</file>
+        <file>Resources/Fonts/Nokia/nokiafc22.txt</file>
     </qresource>
 </RCC>

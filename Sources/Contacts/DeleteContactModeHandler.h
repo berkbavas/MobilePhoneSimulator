@@ -2,7 +2,8 @@
 #define DELETECONTACTMODEHANDLER_H
 
 #include "ModeHandler.h"
-#include <Display.h>
+#include "Display.h"
+
 #include <QObject>
 
 class DeleteContactModeHandler : public ModeHandler

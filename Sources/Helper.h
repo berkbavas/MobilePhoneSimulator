@@ -2,10 +2,9 @@
 #define HELPER_H
 
 #include "Menu.h"
+#include "Contacts/Contact.h"
 
 #include <QObject>
-
-#include <Contacts/Contact.h>
 
 class Helper : public QObject
 {

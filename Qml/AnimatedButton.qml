@@ -38,5 +38,4 @@ Button {
         duration: 50
         running: false
     }
-
 }

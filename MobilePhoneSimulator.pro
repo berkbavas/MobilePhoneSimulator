@@ -5,32 +5,32 @@ QT += quick
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        Action.cpp \
-        ChangeControllerRequest.cpp \
-        Contacts/AddContactModeHandler.cpp \
-        Contacts/CallContactModeHandler.cpp \
-        Contacts/Contact.cpp \
-        Contacts/ContactsDisplayController.cpp \
-        Contacts/DeleteContactModeHandler.cpp \
-        Contacts/EditContactModeHandler.cpp \
-        Contacts/ModeHandler.cpp \
-        Contacts/ShowContactModeHandler.cpp \
-        Controller.cpp \
-        DefaultDisplayController.cpp \
-        Display.cpp \
-        Helper.cpp \
-        Item.cpp \
-        LineEditor/Charset.cpp \
-        LineEditor/LineEditor.cpp \
-        MainController.cpp \
-        MainDisplayController.cpp \
-        MainMenuController.cpp \
-        Menu.cpp \
-        Main.cpp \
-        Request.cpp \
-        SimpleMenu.cpp
+        Sources/Action.cpp \
+        Sources/ChangeControllerRequest.cpp \
+        Sources/Contacts/AddContactModeHandler.cpp \
+        Sources/Contacts/CallContactModeHandler.cpp \
+        Sources/Contacts/Contact.cpp \
+        Sources/Contacts/ContactsDisplayController.cpp \
+        Sources/Contacts/DeleteContactModeHandler.cpp \
+        Sources/Contacts/EditContactModeHandler.cpp \
+        Sources/Contacts/ModeHandler.cpp \
+        Sources/Contacts/ShowContactModeHandler.cpp \
+        Sources/Controller.cpp \
+        Sources/DefaultDisplayController.cpp \
+        Sources/Display.cpp \
+        Sources/Helper.cpp \
+        Sources/Item.cpp \
+        Sources/LineEditor/Charset.cpp \
+        Sources/LineEditor/LineEditor.cpp \
+        Sources/MainController.cpp \
+        Sources/MainDisplayController.cpp \
+        Sources/MainMenuController.cpp \
+        Sources/Menu.cpp \
+        Sources/Main.cpp \
+        Sources/Request.cpp \
+        Sources/SimpleMenu.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += Resources.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -43,28 +43,30 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+INCLUDEPATH += Sources
+
 HEADERS += \
-    Action.h \
-    ChangeControllerRequest.h \
-    Contacts/AddContactModeHandler.h \
-    Contacts/CallContactModeHandler.h \
-    Contacts/Contact.h \
-    Contacts/ContactsDisplayController.h \
-    Contacts/DeleteContactModeHandler.h \
-    Contacts/EditContactModeHandler.h \
-    Contacts/ModeHandler.h \
-    Contacts/ShowContactModeHandler.h \
-    Controller.h \
-    DefaultDisplayController.h \
-    Display.h \
-    Enums.h \
-    Helper.h \
-    Item.h \
-    LineEditor/Charset.h \
-    LineEditor/LineEditor.h \
-    MainController.h \
-    MainDisplayController.h \
-    MainMenuController.h \
-    Menu.h \
-    Request.h \
-    SimpleMenu.h
+    Sources/Action.h \
+    Sources/ChangeControllerRequest.h \
+    Sources/Contacts/AddContactModeHandler.h \
+    Sources/Contacts/CallContactModeHandler.h \
+    Sources/Contacts/Contact.h \
+    Sources/Contacts/ContactsDisplayController.h \
+    Sources/Contacts/DeleteContactModeHandler.h \
+    Sources/Contacts/EditContactModeHandler.h \
+    Sources/Contacts/ModeHandler.h \
+    Sources/Contacts/ShowContactModeHandler.h \
+    Sources/Controller.h \
+    Sources/DefaultDisplayController.h \
+    Sources/Display.h \
+    Sources/Enums.h \
+    Sources/Helper.h \
+    Sources/Item.h \
+    Sources/LineEditor/Charset.h \
+    Sources/LineEditor/LineEditor.h \
+    Sources/MainController.h \
+    Sources/MainDisplayController.h \
+    Sources/MainMenuController.h \
+    Sources/Menu.h \
+    Sources/Request.h \
+    Sources/SimpleMenu.h

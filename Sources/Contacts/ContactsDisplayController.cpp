@@ -1,5 +1,6 @@
 #include "ContactsDisplayController.h"
 #include "Helper.h"
+
 #include <QDebug>
 
 ContactsDisplayController::ContactsDisplayController(QObject *parent)
@@ -9,7 +10,7 @@ ContactsDisplayController::ContactsDisplayController(QObject *parent)
 
 void ContactsDisplayController::init()
 {
-    mContacts = Helper::parseContacts(":/Data/Contacts.json");
+    mContacts = Helper::parseContacts(":/Resources/Data/Contacts.json");
     mContactList = new SimpleMenu;
 
     updateContactList();

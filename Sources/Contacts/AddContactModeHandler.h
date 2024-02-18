@@ -2,7 +2,8 @@
 #define ADDCONTACTMODEHANDLER_H
 
 #include "ModeHandler.h"
-#include <Display.h>
+#include "Display.h"
+
 #include <QObject>
 
 class AddContactModeHandler : public ModeHandler

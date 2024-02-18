@@ -6,13 +6,12 @@
 #include "Contact.h"
 #include "Controller.h"
 #include "DeleteContactModeHandler.h"
-#include "Display.h"
 #include "EditContactModeHandler.h"
 #include "ModeHandler.h"
 #include "ShowContactModeHandler.h"
 #include "SimpleMenu.h"
+#include "ChangeControllerRequest.h"
 
-#include <ChangeControllerRequest.h>
 #include <QMap>
 #include <QStack>
 
