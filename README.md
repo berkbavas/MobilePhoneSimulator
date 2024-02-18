@@ -2,7 +2,7 @@
 LCD screen implementation in QML.
 
 ## Build
-- Install `MSVC C++ v142 Compiler` compiler.
+- Install `MSVC C++ v142 Compiler`.
 - Install `Qt 5.x.x MSVC2019 64-bit` kit.
 - Simply open `MobilePhoneSimulator.pro` with `QtCreator` and build & run it.
 
