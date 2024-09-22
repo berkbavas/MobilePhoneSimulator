@@ -9,7 +9,7 @@ Window {
     color:  "#ffffff"
 
     FontLoader {
-        source: "qrc:/resources/fonts/JetBrains/JetBrainsMono-Regular.ttf"
+        source: "qrc:/Resources/Fonts/JetBrains/JetBrainsMono-Regular.ttf"
     }
 
     Container {

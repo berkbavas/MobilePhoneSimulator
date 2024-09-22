@@ -9,7 +9,7 @@ Item {
         y: 0
         width: 350
         height: 828
-        source: "qrc:/resources/Images/Background.png"
+        source: "qrc:/Resources/Images/Background.png"
         fillMode: Image.PreserveAspectCrop
     }
 
@@ -23,112 +23,112 @@ Item {
     AnimatedButton {
         x: 49
         y: 449
-        source: "qrc:/resources/Images/C.png"
+        source: "qrc:/Resources/Images/C.png"
         onPressed: controller.onAction(12)
     }
 
     AnimatedButton {
         x: 99
         y: 432
-        source: "qrc:/resources/Images/Space.png"
+        source: "qrc:/Resources/Images/Space.png"
         onPressed: controller.onAction(13)
     }
 
     AnimatedButton {
         x: 252
         y: 450
-        source: "qrc:/resources/Images/ArrowUp.png"
+        source: "qrc:/Resources/Images/ArrowUp.png"
         onPressed: controller.onAction(14)
     }
 
     AnimatedButton {
         x: 191
         y: 474
-        source: "qrc:/resources/Images/ArrowDown.png"
+        source: "qrc:/Resources/Images/ArrowDown.png"
         onPressed: controller.onAction(15)
     }
 
     AnimatedButton {
         x: 37
         y: 540
-        source: "qrc:/resources/Images/1.png"
+        source: "qrc:/Resources/Images/1.png"
         onPressed: controller.onAction(1)
     }
 
     AnimatedButton {
         x: 137
         y: 557
-        source: "qrc:/resources/Images/2.png"
+        source: "qrc:/Resources/Images/2.png"
         onPressed: controller.onAction(2)
     }
 
     AnimatedButton {
         x: 243
         y: 541
-        source: "qrc:/resources/Images/3.png"
+        source: "qrc:/Resources/Images/3.png"
         onPressed: controller.onAction(3)
     }
 
     AnimatedButton {
         x: 40
         y: 599
-        source: "qrc:/resources/Images/4.png"
+        source: "qrc:/Resources/Images/4.png"
         onPressed: controller.onAction(4)
     }
 
     AnimatedButton {
         x: 137
         y: 615
-        source: "qrc:/resources/Images/5.png"
+        source: "qrc:/Resources/Images/5.png"
         onPressed: controller.onAction(5)
     }
 
     AnimatedButton {
         x: 239
         y: 598
-        source: "qrc:/resources/Images/6.png"
+        source: "qrc:/Resources/Images/6.png"
         onPressed: controller.onAction(6)
     }
 
     AnimatedButton {
         x: 44
         y: 657
-        source: "qrc:/resources/Images/7.png"
+        source: "qrc:/Resources/Images/7.png"
         onPressed: controller.onAction(7)
     }
 
     AnimatedButton {
         x: 136
         y: 672
-        source: "qrc:/resources/Images/8.png"
+        source: "qrc:/Resources/Images/8.png"
         onPressed: controller.onAction(8)
     }
 
     AnimatedButton {
         x: 236
         y: 656
-        source: "qrc:/resources/Images/9.png"
+        source: "qrc:/Resources/Images/9.png"
         onPressed: controller.onAction(9)
     }
 
     AnimatedButton {
         x: 48
         y: 715
-        source: "qrc:/resources/Images/Star.png"
+        source: "qrc:/Resources/Images/Star.png"
         onPressed: controller.onAction(10)
     }
 
     AnimatedButton {
         x: 136
         y: 731
-        source: "qrc:/resources/Images/0.png"
+        source: "qrc:/Resources/Images/0.png"
         onPressed: controller.onAction(0)
     }
 
     AnimatedButton {
         x: 232
         y: 714
-        source: "qrc:/resources/Images/Square.png"
+        source: "qrc:/Resources/Images/Square.png"
         onPressed: controller.onAction(11)
     }
 }
