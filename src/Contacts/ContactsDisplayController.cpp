@@ -10,7 +10,7 @@ ContactsDisplayController::ContactsDisplayController(QObject *parent)
 
 void ContactsDisplayController::init()
 {
-    mContacts = Helper::parseContacts(":/resources/data/contacts.json");
+    mContacts = Helper::parseContacts(":/resources/Data/Contacts.json");
     mContactList = new SimpleMenu;
 
     updateContactList();

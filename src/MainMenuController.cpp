@@ -6,7 +6,7 @@ MainMenuController::MainMenuController(QObject *parent)
     , mActiveMenu(nullptr)
     , mMainMenu(nullptr)
 {
-    mMainMenu = Helper::parseMenus(":/resources/data/menus.json");
+    mMainMenu = Helper::parseMenus(":/resources/Data/Menus.json");
 
     connect(this, &Controller::activeChanged, this, [=]() {
         if (mActive)
