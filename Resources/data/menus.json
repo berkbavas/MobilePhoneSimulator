@@ -1,0 +1,63 @@
+{
+	"title": "Main Menu",
+	"controllerName": "DefaultDisplayController",
+	"children": [
+		{
+			"name": "Contacts",
+			"controllerName": "ContactsDisplayController",
+			"children": [
+				{
+					"name": "Call Contact",
+					"controllerMode": 0
+				},
+				{
+					"name": "Show Contact",
+					"controllerMode": 1
+				},
+				{
+					"name": "Add Contact",
+					"controllerMode": 2
+				},
+				{
+					"name": "Edit Contact",
+					"controllerMode": 3
+				},
+				{
+					"name": "Delete Contact",
+					"controllerMode": 4
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"children": [
+				{
+					"name": "Write Message"
+				},
+				{
+					"name": "Show Message"
+				},
+				{
+					"name": "Delete Message"
+				}
+			]
+		},
+		{
+			"name": "Calls",
+			"children": [
+				{
+					"name": "Call"
+				},
+				{
+					"name": "Call History"
+				},
+				{
+					"name": "Clear Call Histroy"
+				}
+			]
+		},
+		{
+			"name": "Settings"
+		}
+	]
+}

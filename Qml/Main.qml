@@ -9,10 +9,11 @@ Window {
     color:  "#ffffff"
 
     FontLoader {
-        source: "../Resources/Fonts/JetBrainsMono-Regular.ttf"
+        source: "qrc:/resources/fonts/JetBrains/JetBrainsMono-Regular.ttf"
     }
 
     Container {
         anchors.centerIn: parent
+        scale: 0.9 * Math.min(parent.width / 350, parent.height / 828);
     }
 }

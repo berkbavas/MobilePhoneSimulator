@@ -21,7 +21,7 @@ Button {
         scaleUpAnimator.running = true
     }
 
-        ScaleAnimator {
+    ScaleAnimator {
         id: scaleUpAnimator
         target: button
         from: button.scale
@@ -38,5 +38,4 @@ Button {
         duration: 50
         running: false
     }
-
 }

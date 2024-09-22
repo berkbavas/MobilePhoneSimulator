@@ -1,0 +1,39 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/AnimatedButton.qml</file>
+        <file>qml/SimpleMenu.qml</file>
+        <file>qml/Container.qml</file>
+        <file>qml/CustomText.qml</file>
+        <file>qml/DisplayContainer.qml</file>
+        <file>qml/MainMenu.qml</file>
+        <file>qml/Main.qml</file>
+        <file>qml/Screen.qml</file>
+		<file>qml/Display.qml</file>
+        <file>resources/images/0.png</file>
+        <file>resources/images/1.png</file>
+        <file>resources/images/2.png</file>
+        <file>resources/images/3.png</file>
+        <file>resources/images/4.png</file>
+        <file>resources/images/5.png</file>
+        <file>resources/images/6.png</file>
+        <file>resources/images/7.png</file>
+        <file>resources/images/8.png</file>
+        <file>resources/images/9.png</file>
+        <file>resources/images/ArrowDown.png</file>
+        <file>resources/images/Arrows.png</file>
+        <file>resources/images/ArrowUp.png</file>
+        <file>resources/images/Background.png</file>
+        <file>resources/images/BackgroundOriginal.png</file>
+        <file>resources/images/C.png</file>
+        <file>resources/images/Space.png</file>
+        <file>resources/images/Square.png</file>
+        <file>resources/images/Star.png</file>
+        <file>resources/fonts/ClassicConsoleNeue/clacon2.ttf</file>
+        <file>resources/fonts/JetBrains/JetBrainsMono-Regular.ttf</file>
+        <file>resources/fonts/Nokia/nokiafc22.ttf</file>
+		<file>resources/fonts/Nokia/nokiafc22.txt</file>
+        <file>resources/fonts/JetBrains/JetBrainsMono-Bold.ttf</file>
+        <file>resources/data/contacts.json</file>
+        <file>resources/data/menus.json</file>
+    </qresource>
+</RCC>

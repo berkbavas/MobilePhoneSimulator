@@ -1,46 +1,57 @@
 QT += quick
 
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
 SOURCES += \
-        Action.cpp \
-        Contact.cpp \
-        ContactsController.cpp \
-        Controller.cpp \
-        DefaultController.cpp \
-        Helper.cpp \
-        MainController.cpp \
-        MainDisplayController.cpp \
-        Menu.cpp \
-        MenuController.cpp \
-        ScrollHandler.cpp \
-        Main.cpp
+        src/Action.cpp \
+        src/ChangeControllerRequest.cpp \
+        src/Contacts/AddContactModeHandler.cpp \
+        src/Contacts/CallContactModeHandler.cpp \
+        src/Contacts/Contact.cpp \
+        src/Contacts/ContactsDisplayController.cpp \
+        src/Contacts/DeleteContactModeHandler.cpp \
+        src/Contacts/EditContactModeHandler.cpp \
+        src/Contacts/ModeHandler.cpp \
+        src/Contacts/ShowContactModeHandler.cpp \
+        src/Controller.cpp \
+        src/DefaultDisplayController.cpp \
+        src/Display.cpp \
+        src/Helper.cpp \
+        src/Item.cpp \
+        src/LineEditor/Charset.cpp \
+        src/LineEditor/LineEditor.cpp \
+        src/MainController.cpp \
+        src/MainDisplayController.cpp \
+        src/MainMenuController.cpp \
+        src/Menu.cpp \
+        src/Main.cpp \
+        src/Request.cpp \
+        src/SimpleMenu.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += MobilePhoneSimulator.qrc
 
-# Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
-
-# Additional import path used to resolve QML modules just for Qt Quick Designer
-QML_DESIGNER_IMPORT_PATH =
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+INCLUDEPATH += src
 
 HEADERS += \
-    Action.h \
-    Contact.h \
-    ContactsController.h \
-    Controller.h \
-    DefaultController.h \
-    Enums.h \
-    Helper.h \
-    MainController.h \
-    MainDisplayController.h \
-    Menu.h \
-    MenuController.h \
-    ScrollHandler.h
+    src/Action.h \
+    src/ChangeControllerRequest.h \
+    src/Contacts/AddContactModeHandler.h \
+    src/Contacts/CallContactModeHandler.h \
+    src/Contacts/Contact.h \
+    src/Contacts/ContactsDisplayController.h \
+    src/Contacts/DeleteContactModeHandler.h \
+    src/Contacts/EditContactModeHandler.h \
+    src/Contacts/ModeHandler.h \
+    src/Contacts/ShowContactModeHandler.h \
+    src/Controller.h \
+    src/DefaultDisplayController.h \
+    src/Display.h \
+    src/Enums.h \
+    src/Helper.h \
+    src/Item.h \
+    src/LineEditor/Charset.h \
+    src/LineEditor/LineEditor.h \
+    src/MainController.h \
+    src/MainDisplayController.h \
+    src/MainMenuController.h \
+    src/Menu.h \
+    src/Request.h \
+    src/SimpleMenu.h
